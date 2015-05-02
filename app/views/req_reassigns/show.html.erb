@@ -1,0 +1,15 @@
+<h1>ReqReassigns#show</h1>
+<div class="row">
+  <div class="span12">
+    <%= link_to t(:home_link), root_path, class: "btn btn-large btn-secondary", id: "btn-home" %>
+    <%= form_for(@req) do |f| %>
+      <%= f.label :state %><%= f.text_field :state, disabled: true  %>
+      <%= f.label :role %><%= f.text_field :role, disabled: true  %>
+      <%= f.label :name %><%= f.text_field :name, disabled: true  %>          
+      <%= f.label :manager %><%= f.text_field :manager, disabled: true  %>  
+      <%= f.label :money %><%= f.text_field :money, disabled: true  %>  
+    <% end %>    
+    <%= link_to t(:home_link), root_path, class: "btn btn-large btn-secondary" %>
+  </div>
+</div>
+<div><%= @req.state_events %></div>

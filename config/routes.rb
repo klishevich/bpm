@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
+  # get 'req_reassigns/index'
+
+  # get 'req_reassigns/new'
+
+  # get 'req_reassigns/create'
+
+  # get 'req_reassigns/show'
+
+  resources :req_reassigns
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'req_reassigns#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

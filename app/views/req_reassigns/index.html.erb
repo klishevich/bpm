@@ -1,0 +1,29 @@
+<h1>ReqReassigns list</h1>
+<div class="span12">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>State</th>
+      <th>Role</th>
+      <th>Manager</th>
+      <th>Money</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reqs.each do |req| %>
+    <tr>
+      <td><%= link_to req.name, req %></td>
+      <td><%= req.state %></td>
+      <td><%= req.role %></td>
+      <td><%= req.manager %></td>
+      <td><%= req.money %></td>
+      <td></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+
