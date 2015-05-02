@@ -1,0 +1,12 @@
+<%= simple_form_for(@req) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form-group"><%= f.input :name, :input_html => {:class => "form-control"} %></div>
+  <div class="form-group"><%= f.input :manager, :input_html => {:class => "form-control"} %></div>
+  <div class="form-group"><%= f.input :inn, :input_html => {:class => "form-control"} %></div>
+  <div class="form-group"><%= f.input :money, :input_html => {:class => "form-control"} %></div>
+
+  <div class="form-group"><%= f.submit :save, class: "btn btn-success"%></div>
+  <% @req.state_events.each do |x| %>
+    <div class="form-group"><%= f.submit x, class: "btn btn-success"%></div>
+  <% end %>  
+<% end %>
