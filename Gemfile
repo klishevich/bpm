@@ -45,7 +45,7 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
 gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano',  require: false
 gem 'unicorn'
 
 group :development, :test do
