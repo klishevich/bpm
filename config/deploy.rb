@@ -15,7 +15,7 @@ set :repository, "git@github.com:klishevich/#{application}.git"
 set :branch, "master"
 
 # set :rvm_ruby_string, '2.1.4@bpm'
-# set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
+set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
