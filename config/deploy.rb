@@ -14,8 +14,8 @@ set :scm, "git"
 set :repository, "git@github.com:klishevich/#{application}.git"
 set :branch, "master"
 
-set :rvm_ruby_string, 'ruby-2.1.4@bpm'
-# set :rvm_ruby_string, :local
+# set :rvm_ruby_string, 'ruby-2.1.2@bpm'
+set :rvm_ruby_string, :local
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
