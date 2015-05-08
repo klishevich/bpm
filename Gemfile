@@ -44,10 +44,11 @@ gem "twitter-bootstrap-rails"
 
 gem 'simple_form'
 
-gem 'capistrano'
-# gem 'capistrano', :git => 'https://github.com/planetio/capistrano.git', :branch => 'master'
-gem 'rvm-capistrano',  require: false
-gem 'unicorn'
+# gem 'capistrano'
+# # gem 'capistrano', :git => 'https://github.com/planetio/capistrano.git', :branch => 'master'
+# gem 'rvm-capistrano',  require: false
+# gem 'unicorn'
+gem 'capistrano', '~> 3.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
