@@ -44,8 +44,8 @@ gem "twitter-bootstrap-rails"
 
 gem 'simple_form'
 
-gem 'capistrano'
-# gem 'capistrano', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-3-stable'
+# gem 'capistrano'
+gem 'capistrano', :git => 'https://github.com/planetio/capistrano.git', :branch => 'master'
 gem 'rvm-capistrano',  require: false
 gem 'unicorn'
 
