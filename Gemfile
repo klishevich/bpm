@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -45,6 +45,7 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 
 gem 'capistrano'
+# gem 'capistrano', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-3-stable'
 gem 'rvm-capistrano',  require: false
 gem 'unicorn'
 
