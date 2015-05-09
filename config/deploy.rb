@@ -12,7 +12,7 @@ set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git@github.com:klishevich/#{application}.git"
-set :branch, "master"
+set :branch, "cap2"
 
 # set :rvm_ruby_string, 'ruby-2.1.2@bpm'
 set :rvm_ruby_string, :local
