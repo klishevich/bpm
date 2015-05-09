@@ -1,15 +1,3 @@
-GIT
-  remote: https://github.com/planetio/capistrano.git
-  revision: 06866cf96897b194ea24d764b7e36c367c3d329c
-  branch: master
-  specs:
-    capistrano (2.15.4)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -54,6 +42,12 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -200,7 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  capistrano!
+  capistrano
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
