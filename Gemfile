@@ -53,6 +53,7 @@ gem 'capistrano', '~> 3.1', require: false
 gem 'capistrano-rails', '~> 1.1', require: false 
 gem 'capistrano-bundler', '~> 1.1', require: false
 gem 'capistrano-rvm', '~> 0.1', require: false 
+gem 'unicorn'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

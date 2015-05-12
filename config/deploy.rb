@@ -2,7 +2,6 @@
 lock '3.4.0'
 
 set :application, 'bpm'
-default_run_options[:pty] = true
 set :deploy_user, 'mike'
 
 
@@ -23,8 +22,8 @@ set(:executable_config_files, %w(
 ))
 set(:symlinks, [
   {
-    source: "/home/mike/apps/{{full_app_name}}/shared/config/unicorn_init.sh",
-    link: "/etc/init.d/unicorn_{{full_app_name}}"
+    # source: "/home/mike/apps/{{full_app_name}}/shared/config/unicorn_init.sh",
+    # link: "/etc/init.d/unicorn_{{full_app_name}}"
   }
 ])
 
@@ -66,7 +65,22 @@ namespace :deploy do
 	    after :finishing, 'deploy:cleanup'
   	  after 'deploy:setup_config', 'nginx:reload'
       after 'deploy:publishing', 'deploy:restart'
+      desc 'Restart application'
+      task :restart do
+        invoke 'unicorn:restart2'
+      end 
     end
   end
+
+end
+
+namespace :unicorn do
+
+  desc 'Restart unicorn 2'
+  task :restart2 do
+    on roles(:web) do
+      execute "/etc/init.d/unicorn_bpm_production restart"
+    end
+  end  
 
 end
