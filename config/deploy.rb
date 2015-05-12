@@ -65,12 +65,13 @@ namespace :deploy do
 	    after :finishing, 'deploy:cleanup'
   	  after 'deploy:setup_config', 'nginx:reload'
       after 'deploy:publishing', 'deploy:restart'
-      desc 'Restart application'
-      task :restart do
-        invoke 'unicorn:restart2'
-      end 
     end
   end
+
+  desc 'Restart application'
+  task :restart do
+    invoke 'unicorn:restart2'
+  end   
 
 end
 
@@ -78,7 +79,7 @@ namespace :unicorn do
 
   desc 'Restart unicorn 2'
   task :restart2 do
-    on roles(:web) do
+    on roles(:app) do
       execute "/etc/init.d/unicorn_bpm_production restart"
     end
   end  
