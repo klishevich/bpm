@@ -48,7 +48,11 @@ gem 'simple_form'
 # # gem 'capistrano', :git => 'https://github.com/planetio/capistrano.git', :branch => 'master'
 # gem 'rvm-capistrano',  require: false
 # gem 'unicorn'
-gem 'capistrano', '~> 3.4.0'
+
+gem 'capistrano', '~> 3.1', require: false
+gem 'capistrano-rails', '~> 1.1', require: false 
+gem 'capistrano-bundler', '~> 1.1', require: false
+gem 'capistrano-rvm', '~> 0.1', require: false 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
