@@ -2,7 +2,9 @@
 lock '3.4.0'
 
 set :application, 'bpm'
+default_run_options[:pty] = true
 set :deploy_user, 'mike'
+
 
 set :scm, :git
 set :repo_url, 'git@github.com:klishevich/bpm.git'
