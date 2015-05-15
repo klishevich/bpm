@@ -1,4 +1,6 @@
 class ReqReassignsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
   	@reqs = ReqReassign.all
   end

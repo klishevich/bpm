@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # get 'req_reassigns/index'
 
   # get 'req_reassigns/new'

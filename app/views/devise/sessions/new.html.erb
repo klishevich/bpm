@@ -1,0 +1,18 @@
+<h2>Log in</h2>
+<div class="row">
+	<div class="col-md-6 col-sm-6">
+		<% if !notice.blank?%> 
+			<div class="alert alert-info" role="alert"><%= notice %></div>
+		<% end %>
+		<% if !alert.blank?%> 
+			<div class="alert alert-warning" role="alert"><%= alert %></div>
+		<% end %>
+		<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>			    <%= f.input :email, required: false, autofocus: true  %>
+		    <%= f.input :password, required: false %>
+		    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+		    <%= f.button :submit, "Log in" %>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+	</div>
+</div>
