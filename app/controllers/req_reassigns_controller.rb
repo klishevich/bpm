@@ -2,15 +2,15 @@ class ReqReassignsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@reqs = ReqReassign.all
+  	@reqs = current_user.req_reassigns
   end
 
   def new
-    @req = ReqReassign.new
+    @req = current_user.req_reassigns.build
   end
 
   def create
-    @req = ReqReassign.new(req_params)
+    @req = current_user.req_reassigns.build(req_params)
     if @req.save
       # flash[:success] = t(:ok)
       redirect_to @req

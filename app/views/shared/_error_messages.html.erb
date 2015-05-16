@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
   <div id="error_explanation">
-    <div class="alert alert-error">
+    <div class="alert alert-warning">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <%= object.errors.count %> <%= "error".pluralize(object.errors.count) %>
     </div>

@@ -1,10 +1,15 @@
 class ReqReassign < ActiveRecord::Base
   after_initialize :init
-  state_machine :initial => :new do
+  belongs_to :user 
+  validates :name, presence: true
+  # validates :manager, presence: true
+  validates :money, presence: true    
+    state_machine :initial => :new do
     before_transition any => :check_approval, :do => :set_role_system
     after_transition any => :check_approval, :do => :check_need_approval
     before_transition any => [:approved, :disapproved], :do => :set_role_manager
     before_transition any => [:accepted_approved, :accepted_disapproved], :do => :set_role_system
+    before_transition any => any, :do => :set_new_user
 
     event :initiate do
       transition :new => :check_approval
@@ -60,6 +65,12 @@ class ReqReassign < ActiveRecord::Base
   	else
   		self.check_approval_no
   	end
+  end
+
+  def set_new_user
+    if User.where(email: self.manager).exists?
+      self.user = User.where(email: self.manager).first
+    end
   end
 
 end

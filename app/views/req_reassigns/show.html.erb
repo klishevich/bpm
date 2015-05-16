@@ -1,40 +1,45 @@
-<h1>ReqReassigns#show</h1>
+<h1>Show Request</h1>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-1">
     <div class="form-group">
       <%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
     </div>
   </div>
+  <div class="col-md-1">
+    <div class="form-group">
+      <%= link_to 'Edit', edit_req_reassign_path(@req), class: "btn btn-success" %>
+    </div>
+  </div>  
 </div>
 <div class="row">
   <div class="col-md-6">
-    <%= form_for(@req) do |f| %>
-    <div class="form-group">
-      <%= f.label :state %><%= f.text_field :state, disabled: true, class: "form-control"  %>
-    </div>
-    <div class="form-group">
-      <%= f.label :role %><%= f.text_field :role, disabled: true, class: "form-control"    %>
-    </div>
-    <div class="form-group">
-      <%= f.label :name %><%= f.text_field :name, disabled: true, class: "form-control"    %>       
-    </div> 
-    <div class="form-group">  
-      <%= f.label :manager %><%= f.text_field :manager, disabled: true, class: "form-control"    %>  
-    </div>
-    <div class="form-group">
-      <%= f.label :money %><%= f.text_field :money, disabled: true, class: "form-control"    %>  
-    </div>
+    <%= simple_form_for(@req) do |f| %>
+      <%= f.input :state, disabled: true %>
+      <%= f.input :role, disabled: true %>
+      <%= f.input :name, disabled: true %>
+      <%= f.input :manager, collection: User.all.collect { |x| x.email }, disabled: true %>
+      <%= f.input :inn, disabled: true%>
+      <%= f.input :money, disabled: true %>    
     <% end %>  
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-1">
     <div class="form-group">
       <%= link_to t(:home_link), root_path, class: "btn btn-default" %>
     </div>
   </div>
+  <div class="col-md-1">
+    <div class="form-group">
+      <%= link_to 'Edit', edit_req_reassign_path(@req), class: "btn btn-success" %>
+    </div>
+  </div>
 </div>
+<div class="row">
   <div class="col-md-12">
-    <div class="row"><%= @req.state_events %></div>
+    <div class="alert alert-info" role="alert">
+      <b>List of Available actions:</b><br/>
+      <%= @req.state_events %>
+    </div>
   </div>
 </div>
