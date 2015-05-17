@@ -1,4 +1,4 @@
-<h1>Requests List</h1>
+<h1>Список заявок на перезакрепление клиентов</h1>
 <div class="form-group">
   <%= link_to t(:new_req), new_req_reassign_path, class: "btn btn-success"%>
 </div>
@@ -7,22 +7,30 @@
   <thead>
     <tr>
       <th></th>
-      <th>Client</th>
-      <th>State</th>
-      <th>Role</th>
-      <th>Manager</th>
-      <th>Money</th>
+      <th><%= ReqReassign.human_attribute_name("id") %></th>
+      <th><%= ReqReassign.human_attribute_name("state") %></th>
+      <th><%= t(:curr_user) %></th>
+      <th><%= ReqReassign.human_attribute_name("name") %></th>
+      <th><%= ReqReassign.human_attribute_name("old_manager") %></th>
+      <th><%= ReqReassign.human_attribute_name("manager") %></th>
+      <th><%= ReqReassign.human_attribute_name("money") %></th>
     </tr>
   </thead>
   <tbody>
   <% @reqs.each do |req| %>
     <tr>
-      <td><%= link_to 'edit', edit_req_reassign_path(req) %></td>      
-      <td><%= link_to req.name, req %></td>
+      <td>
+        <% if req.user == current_user %>
+          <%= link_to 'Ред.', edit_req_reassign_path(req) %>
+        <% end %>   
+      </td>
+      <td><%= link_to req.id, req %></td>
       <td><%= req.state %></td>
-      <td><%= req.role %></td>
+      <td><%= req.user.email %></td>
+      <td><%= req.name %></td>
+      <td><%= req.old_manager %></td>
       <td><%= req.manager %></td>
-      <td><%= req.money %></td>
+      <td style="text-align: right"><%= req.money %></td>
     </tr>
   <% end %>
   </tbody>

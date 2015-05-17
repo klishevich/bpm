@@ -1,4 +1,4 @@
-<h1>New Request</h1>
+<h1>Создать заявку на перезакрепление клиента</h1>
 <div class="form-group">
   <%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
 </div>
@@ -6,8 +6,8 @@
 	<div class="col-md-6 col-sm-6">
 		<%= simple_form_for(@req) do |f| %>
 		  <%= f.input :name %>
-		  <%= f.input :manager, collection: User.all.collect { |x| x.email } %>
 		  <%= f.input :inn %>
+		  <%= f.input :manager, collection: User.all.collect { |x| x.email } %>
 		  <%= f.input :money %>
 
 		  <div class="form-group fl1"><%= f.submit :save, class: "btn btn-success"%></div>

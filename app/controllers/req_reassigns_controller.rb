@@ -2,7 +2,7 @@ class ReqReassignsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@reqs = current_user.req_reassigns
+  	@reqs = ReqReassign.where('state not in (?)', 'closed').order('id desc')
   end
 
   def new
@@ -10,6 +10,7 @@ class ReqReassignsController < ApplicationController
   end
 
   def create
+    params[:req_reassign][:old_manager] = current_user.email
     @req = current_user.req_reassigns.build(req_params)
     if @req.save
       # flash[:success] = t(:ok)
@@ -56,6 +57,6 @@ class ReqReassignsController < ApplicationController
   private
 
   def req_params
-    params.require(:req_reassign).permit(:name, :manager, :inn, :money)
+    params.require(:req_reassign).permit(:name, :manager, :inn, :money, :old_manager)
   end     
 end

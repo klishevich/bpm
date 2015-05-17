@@ -1,11 +1,13 @@
 <div class="row">
 	<div class="col-md-6 col-sm-6">
 		<%= simple_form_for(@req) do |f| %>
-          <%= f.input :state, disabled: true %>
-          <%= f.input :role, disabled: true %>		
+          <%= f.input :id, disabled: true %>      
+          <%= f.input :state, disabled: true %>	
+	      <div class="form-group string optional disabled"><label class="string optional control-label"><%= t(:curr_user) %></label><input class="string optional disabled form-control" disabled="disabled" type="text" value=<%= @req.user.email %>></div>           
 		  <%= f.input :name %>
+		  <%= f.input :inn %>		  
+		  <%= f.input :old_manager, disabled: true%>
 		  <%= f.input :manager, collection: User.all.collect { |x| x.email } %>
-		  <%= f.input :inn %>
 		  <%= f.input :money %>
 
 		  <div class="form-group"><%= f.submit :save, class: "btn btn-success"%></div>

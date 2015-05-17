@@ -1,40 +1,20 @@
-<h1>Show Request</h1>
-<div class="row">
-  <div class="col-md-1">
-    <div class="form-group">
-      <%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
-    </div>
-  </div>
-  <div class="col-md-1">
-    <div class="form-group">
-      <%= link_to 'Edit', edit_req_reassign_path(@req), class: "btn btn-success" %>
-    </div>
-  </div>  
-</div>
+<h1>Просмотр заявки на перезакрепление</h1>
+<%= render 'show_buttons' %>
 <div class="row">
   <div class="col-md-6">
     <%= simple_form_for(@req) do |f| %>
-      <%= f.input :state, disabled: true %>
-      <%= f.input :role, disabled: true %>
+      <%= f.input :id, disabled: true %>      
+      <%= f.input :state, disabled: true %> 
+      <div class="form-group string optional disabled"><label class="string optional control-label"><%= t(:curr_user) %></label><input class="string optional disabled form-control" disabled="disabled" type="text" value=<%= @req.user.email %>></div>   
       <%= f.input :name, disabled: true %>
+      <%= f.input :inn, disabled: true%>      
+      <%= f.input :old_manager, disabled: true%>      
       <%= f.input :manager, collection: User.all.collect { |x| x.email }, disabled: true %>
-      <%= f.input :inn, disabled: true%>
       <%= f.input :money, disabled: true %>    
     <% end %>  
   </div>
 </div>
-<div class="row">
-  <div class="col-md-1">
-    <div class="form-group">
-      <%= link_to t(:home_link), root_path, class: "btn btn-default" %>
-    </div>
-  </div>
-  <div class="col-md-1">
-    <div class="form-group">
-      <%= link_to 'Edit', edit_req_reassign_path(@req), class: "btn btn-success" %>
-    </div>
-  </div>
-</div>
+<%= render 'show_buttons' %>
 <div class="row">
   <div class="col-md-12">
     <div class="alert alert-info" role="alert">

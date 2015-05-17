@@ -211,8 +211,14 @@ en:
       user:
         name: "Name (Last, first)" 
       req_reassign:
-        name: "Client Name"
-        inn: "Client INN"
-        money: "Client Profit"
+        id: "Номер заявки"
+        name: "Наименование клиента"
+        inn: "ИНН клиента"
+        money: "Доход с клиента (> 1000)"
+        state: "Статус заявки"
+        old_manager: "Менеджер клиента"
+        manager: "Новый менеджер клиента"
   save: "Save"
-  new_req: "New Request"
+  new_req: "Новая заявка"
+  curr_user: "Текущее назначение заявки"
+  home_link: "На главную"

@@ -1,26 +1,4 @@
-<h1>Edit Request</h1>
-<div class="row">
-  <div class="col-md-1">
-	<div class="form-group">
-  		<%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
-	</div>
-  </div>
-  <div class="col-md-1">
-  	<div class="form-group">
-	  <%= link_to 'View', req_reassign_path(@req), class: "btn btn-default" %>
-	</div>
-  </div>
-</div>
+<h1>Редактировать заявку на перезакрепление</h1>
+<%= render 'edit_buttons' %>
 <%= render 'form' %>
-<div class="row">
-  <div class="col-md-1">
-	<div class="form-group">
-  		<%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
-	</div>
-  </div>
-  <div class="col-md-1">
-  	<div class="form-group">
-	  <%= link_to 'View', req_reassign_path(@req), class: "btn btn-default" %>
-	</div>
-  </div>
-</div>
+<%= render 'edit_buttons' %>
