@@ -49,6 +49,17 @@ class ReqReassign < ActiveRecord::Base
   def init
     self.role ||= 'manager'
     self.state ||= 'new' 
+    @hh = Hash.new{|hash, key| hash[key] = Hash.new}
+    @hh["new"]["name"] = false
+    @hh["new"]["inn"] = false
+    @hh["new"]["manager"] = false
+    @hh["new"]["money"] = false
+    @hh["new"]["info"] = false
+    @hh["wait_approval"]["info"] = false
+    @hh["approved"]["info"] = false
+    @hh["disapproved"]["info"] = false
+    @hh["accepted_approved"]["info"] = false
+    @hh["accepted_disapproved"]["info"] = false  
   end
 
   def assign_to_manager
@@ -72,6 +83,16 @@ class ReqReassign < ActiveRecord::Base
     if User.where(email: 'admin@test.co').exists?
       self.user = User.where(email: 'admin@test.co').first
     end 
+  end
+
+  def is_disabled?(field)
+    res = @hh[self.state][field]
+    res = true if res.nil?
+    res
+  end
+
+  def test
+    @hh["new"]["name"]
   end
 
   private

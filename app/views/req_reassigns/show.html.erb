@@ -9,8 +9,9 @@
       <%= f.input :name, disabled: true %>
       <%= f.input :inn, disabled: true%>      
       <%= f.input :old_manager, disabled: true%>      
-      <%= f.input :manager, collection: User.all.collect { |x| x.email }, disabled: true %>
-      <%= f.input :money, disabled: true %>    
+      <%= f.input :manager, disabled: true %>
+      <%= f.input :money, disabled: true %>   
+      <%= f.input :info, disabled: true %> 
     <% end %>  
   </div>
 </div>

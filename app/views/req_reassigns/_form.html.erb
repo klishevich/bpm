@@ -4,12 +4,12 @@
           <%= f.input :id, disabled: true %>      
           <%= f.input :state, disabled: true %>	
 	      <div class="form-group string optional disabled"><label class="string optional control-label"><%= t(:curr_user) %></label><input class="string optional disabled form-control" disabled="disabled" type="text" value=<%= @req.user.email %>></div>           
-		  <%= f.input :name %>
-		  <%= f.input :inn %>		  
+		  <%= f.input :name, disabled: @req.is_disabled?("name") %>
+		  <%= f.input :inn, disabled: @req.is_disabled?("inn") %>		  
 		  <%= f.input :old_manager, disabled: true%>
-		  <%= f.input :manager, collection: User.all.collect { |x| x.email } %>
-		  <%= f.input :money %>
-
+		  <%= f.input :manager, collection: User.all.collect { |x| x.email }, disabled: @req.is_disabled?("manager") %>
+		  <%= f.input :money, disabled: @req.is_disabled?("money") %>
+		  <%= f.input :info, disabled: @req.is_disabled?("info") %>
 		  <div class="form-group"><%= f.submit :save, class: "btn btn-success"%></div>
 		  <% @req.state_events.each do |x| %>
 		    <div class="form-group fl1"><%= f.submit x, class: "btn btn-success"%></div>
