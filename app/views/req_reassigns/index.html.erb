@@ -13,7 +13,7 @@
       <th><%= ReqReassign.human_attribute_name("name") %></th>
       <th><%= ReqReassign.human_attribute_name("old_manager") %></th>
       <th><%= ReqReassign.human_attribute_name("manager") %></th>
-      <th><div align="right" data-toggle="tooltip" data-placement="top" title="Согласование требуется если стоимость более 1 000"><%= ReqReassign.human_attribute_name("money") %></div></th>
+      <th><div align="right" data-toggle="tooltip" data-placement="top" title="Согласование требуется если доход более 1 000"><%= ReqReassign.human_attribute_name("money") %></div></th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
       </td>
       <td><%= link_to req.id, req %></td>
       <td><%= req.state %></td>
-      <td><%= req.user.email %></td>
+      <td><%= req.user.name %></td>
       <td><%= req.name %></td>
       <td><%= req.old_manager %></td>
       <td><%= req.manager %></td>
