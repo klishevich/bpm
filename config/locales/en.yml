@@ -209,17 +209,20 @@ en:
   activerecord:
     attributes:
       user:
-        name: "Name (Last, first)" 
+        remember_me: "Запомнить меня"
+        name: "ФИО"
+        password: "Пароль"
+        password_confirmation: "Пароль еще раз"
       req_reassign:
-        id: "Номер заявки"
-        name: "Наименование клиента"
+        id: "Номер"
+        name: "Клиент"
         inn: "ИНН клиента"
-        money: "Доход с клиента (> 1000)"
-        state: "Статус заявки"
-        old_manager: "Менеджер клиента"
-        manager: "Новый менеджер клиента"
+        money: "Доход с клиента*"
+        state: "Статус"
+        old_manager: "Старый менеджер"
+        manager: "Новый менеджер"
         info: "Дополнительная информация"
   save: "Save"
   new_req: "Новая заявка"
-  curr_user: "Текущее назначение заявки"
+  curr_user: "Текущее назначение"
   home_link: "На главную"

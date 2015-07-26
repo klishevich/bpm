@@ -13,7 +13,7 @@
       <th><%= ReqReassign.human_attribute_name("name") %></th>
       <th><%= ReqReassign.human_attribute_name("old_manager") %></th>
       <th><%= ReqReassign.human_attribute_name("manager") %></th>
-      <th><%= ReqReassign.human_attribute_name("money") %></th>
+      <th><div align="right" data-toggle="tooltip" data-placement="top" title="Согласование требуется если стоимость более 1 000"><%= ReqReassign.human_attribute_name("money") %></div></th>
     </tr>
   </thead>
   <tbody>
@@ -30,11 +30,15 @@
       <td><%= req.name %></td>
       <td><%= req.old_manager %></td>
       <td><%= req.manager %></td>
-      <td style="text-align: right"><%= req.money %></td>
+      <td style="text-align: right"><%= number_to_currency(req.money, :unit => "") %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
 </div>
-
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 

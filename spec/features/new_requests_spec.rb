@@ -2,17 +2,17 @@ require 'rails_helper'
 require 'pp'
 
 RSpec.describe "User", :type => :request do
-  it "can login page and create request" do
+  it "can login and create request" do
     # user = FactoryGirl.create(:user, :username => "mike@gmail.com", :password => "password")
     visit "/"
     # pp "test"
     expect(page).to have_selector('a', text: 'BPM on Rails') 
 
-    fill_in "Email", :with => "manager1@test.co"
-    fill_in "Password", :with => "mihael1st"
+    fill_in "user_email", :with => "manager1@test.co"
+    fill_in "user_password", :with => "testtest"
     click_button "enter"
 
-    expect(page).to have_selector('a.user_email', :text => 'manager1@test.co')
+    expect(page).to have_selector('a.user_email', :text => 'Manager One')
 
     visit "/req_reassigns/new"
     expect(page).to have_selector('h1#new')
