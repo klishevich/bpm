@@ -5,9 +5,8 @@
     <%= simple_form_for(@req) do |f| %>
       <%= f.input :id, disabled: true %>      
       <%= f.input :state, disabled: true %> 
-      <div class="form-group string optional disabled"><label class="string optional control-label"><%= t(:curr_user) %></label><input class="string optional disabled form-control" disabled="disabled" type="text" value=<%= @req.user.email %>></div>   
-      <%= f.input :name, disabled: true %>
-      <%= f.input :inn, disabled: true%>      
+      <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, disabled: true %>
+      <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: true %>    
       <%= f.input :old_manager, disabled: true%>      
       <%= f.input :manager, disabled: true %>
       <%= f.input :money, disabled: true %>   

@@ -1,8 +1,11 @@
 class ReqReassign < ActiveRecord::Base
   after_initialize :init
-  belongs_to :user 
-  validates :name, presence: true
+  belongs_to :user
+  belongs_to :client
+  # validates :name, presence: true
   # validates :manager, presence: true
+  validates :client_id, presence: true
+  validates :manager, presence: true
   validates :money, presence: true    
     state_machine :initial => :new do
     before_transition any => :check_approval, :do => :assign_to_admin
@@ -50,11 +53,13 @@ class ReqReassign < ActiveRecord::Base
     self.role ||= 'manager'
     self.state ||= 'new' 
     @hh = Hash.new{|hash, key| hash[key] = Hash.new}
+    # set which fields 
     @hh["new"]["name"] = false
     @hh["new"]["inn"] = false
     @hh["new"]["manager"] = false
     @hh["new"]["money"] = false
     @hh["new"]["info"] = false
+    @hh["new"]["client"] = false
     @hh["wait_approval"]["info"] = false
     @hh["approved"]["info"] = false
     @hh["disapproved"]["info"] = false

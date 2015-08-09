@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :req_reassigns, dependent: :destroy  
+  has_many :req_reassigns, dependent: :destroy 
+  has_many :clients, foreign_key: "manager_id", class_name: "Client", dependent: :destroy 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
