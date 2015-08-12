@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809131940) do
+ActiveRecord::Schema.define(version: 20150812204528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,22 +27,21 @@ ActiveRecord::Schema.define(version: 20150809131940) do
   add_index "clients", ["manager_id"], name: "index_clients_on_manager_id", using: :btree
 
   create_table "req_reassigns", force: :cascade do |t|
-    t.string   "state",       default: "new"
+    t.string   "state",          default: "new"
     t.string   "role"
-    t.string   "name"
-    t.string   "manager"
-    t.string   "inn"
     t.integer  "money"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
-    t.string   "old_manager"
-    t.string   "string"
     t.text     "info"
     t.integer  "client_id"
+    t.integer  "old_manager_id"
+    t.integer  "new_manager_id"
   end
 
   add_index "req_reassigns", ["client_id"], name: "index_req_reassigns_on_client_id", using: :btree
+  add_index "req_reassigns", ["new_manager_id"], name: "index_req_reassigns_on_new_manager_id", using: :btree
+  add_index "req_reassigns", ["old_manager_id"], name: "index_req_reassigns_on_old_manager_id", using: :btree
   add_index "req_reassigns", ["user_id"], name: "index_req_reassigns_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

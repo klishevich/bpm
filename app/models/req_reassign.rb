@@ -2,10 +2,11 @@ class ReqReassign < ActiveRecord::Base
   after_initialize :init
   belongs_to :user
   belongs_to :client
+  belongs_to :old_manager, class_name: "User"
+  belongs_to :new_manager, class_name: "User"
   # validates :name, presence: true
   # validates :manager, presence: true
   validates :client_id, presence: true
-  validates :manager, presence: true
   validates :money, presence: true    
     state_machine :initial => :new do
     before_transition any => :check_approval, :do => :assign_to_admin

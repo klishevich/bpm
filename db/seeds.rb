@@ -26,37 +26,36 @@ User.create([
 	{ email: "admin@test.co", password:"testtest", password_confirmation:"testtest", name: "Админ"}
 ])
 
+user1 = User.where(email: "manager1@test.co").first
+user2 = User.where(email: "manager2@test.co").first
 
-puts 'ReqReassigns and Clients creation for manager1'
-#1
-user = User.where(email: "manager1@test.co").first
+puts 'Clients creation'
 
-user.clients.create([
+user1.clients.create([
 	{ name: 'ООО "Бизнес-Оптимизация"', inn: "5408290560"},
 	{ name: 'Компания Сибирь', inn: "1234567890"},
 	{ name: 'Компания Авиалинии', inn: "5408290560"},
 	{ name: 'Русский бальзам', inn: "5408290560"}
 	])
 
-client = Client.first
-
-user.req_reassigns.create([
-  { client_id: client.id, old_manager: "manager1@test.co", 
-  	manager: "manager2@test.co", money: 10_000_000, info: "test1"}
-])
-
-puts 'ReqReassigns and Clients creation for manager2'
-user = User.where(email: "manager2@test.co").first
-user.clients.create([
+user2.clients.create([
 	{ name: 'Андроповка', inn: "5408290560"},
 	{ name: 'Калинка', inn: "1234567890"},
 	{ name: 'Рога и копыта', inn: "5408290560"},
 	{ name: 'ООО Крупнокалиберный пулемет', inn: "5408290560"}
 	])
 
-client = Client.where(name: "Рога и копыта").first
+client1 = Client.where(name: "Компания Сибирь").first
+client2 = Client.where(name: "Рога и копыта").first
 
-user.req_reassigns.create([
-  { client_id: client.id, old_manager: "manager2@test.co", 
-  	manager: "manager1@test.co", money: 123_000_000, info: "test2"}
+puts 'ReqReassigns creation'
+
+ReqReassign.create([
+  { user_id: user1.id, client_id: client1.id, old_manager_id: user1.id, 
+  	new_manager_id: user2.id, money: 10_000_000, info: "test1"}
+])
+
+ReqReassign.create([
+  { user_id: user2.id, client_id: client2.id, old_manager_id: user2.id, 
+  	new_manager_id: user1.id, money: 123_000_000, info: "test2"}
 ])
