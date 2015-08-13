@@ -7,10 +7,11 @@ class ReqReassignsController < ApplicationController
 
   def new
     @req = current_user.req_reassigns.build
+    # @req.old_manager_id = current_user.id
   end
 
   def create
-    params[:req_reassign][:old_manager] = current_user.email
+    params[:req_reassign][:old_manager_id] = current_user.id
     @req = current_user.req_reassigns.build(req_params)
     if @req.save
       # flash[:success] = t(:ok)
@@ -57,6 +58,6 @@ class ReqReassignsController < ApplicationController
   private
 
   def req_params
-    params.require(:req_reassign).permit(:name, :manager, :inn, :money, :old_manager, :info, :client_id)
+    params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id)
   end     
 end

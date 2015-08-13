@@ -4,9 +4,9 @@
           <%= f.input :id, disabled: true %>      
           <%= f.input :state, disabled: true %>	
           <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, disabled: true %>
-          <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("client")%>         	  
-		  <%= f.input :old_manager, disabled: true%>
-		  <%= f.input :manager, collection: User.all.collect { |x| x.email }, disabled: @req.is_disabled?("manager") %>
+          <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("client")%>  
+          <%= f.input :old_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true %>
+          <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("new_manager")  %>       	  
 		  <%= f.input :money, disabled: @req.is_disabled?("money") %>
 		  <%= f.input :info, disabled: @req.is_disabled?("info") %>
 		  <div class="form-group"><%= f.submit :save, class: "btn btn-success"%></div>

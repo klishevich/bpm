@@ -5,10 +5,8 @@
 <div class="row">
 	<div class="col-md-6 col-sm-6">
 		<%= simple_form_for(@req) do |f| %>
-		  <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id %>
-		  <!--%= f.input :name %>
-		  <%= f.input :inn %>-->
-		  <%= f.input :manager, collection: User.order(:name).all, label_method: :name, value_method: :email %>
+		  <%= f.input :client_id, collection: Client.order(:name).where("manager_id = ?", current_user.id), label_method: :name, value_method: :id %>
+		  <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id %>
 		  <%= f.input :money %>
 		  <%= f.input :info %>
 		  <div class="form-group fl1"><%= f.submit :save, class: "btn btn-success"%></div>
