@@ -75,6 +75,7 @@ class ReqReassign < ActiveRecord::Base
   end
 
   def assign_to_chief
+    Rails.logger.info('!!!!! assign to chief') 
     chief_email = OrgStructure.get_chief(self.new_manager.email)
     Rails.logger.info('!!!!!' + chief_email) 
     self.user = User.where("email = ?", chief_email).first
@@ -82,6 +83,7 @@ class ReqReassign < ActiveRecord::Base
   end
 
   def assign_to_admin
+    Rails.logger.info('!!!!! assign to admin') 
     self.user = User.where(email: 'admin@test.co').first
   end
 
@@ -95,7 +97,15 @@ class ReqReassign < ActiveRecord::Base
     @hh["new"]["name"]
   end
 
-  private
+  def reassign_client
+    Rails.logger.info('!!!!! reassign_client') 
+    Rails.logger.info(self.client.manager_id) 
+    Rails.logger.info(self.new_manager_id) 
+    self.client.manager = self.new_manager
+    self.client.save
+  end  
+
+  private  
 
   def check_need_approval
   	if self.money > 1000
@@ -103,12 +113,6 @@ class ReqReassign < ActiveRecord::Base
   	else
   		self.check_approval_no
   	end
-  end
-
-  def reassign_client
-    Rails.logger.info('!!!!! self.client.manager_id' + self.client.manager_id) 
-    Rails.logger.info('!!!!! self.new_manager_id' + self.new_manager_id) 
-    self.client.manager_id = self.new_manager_id
   end
 
 end
