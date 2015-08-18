@@ -14,7 +14,8 @@ class ReqReassignsController < ApplicationController
     params[:req_reassign][:old_manager_id] = current_user.id
     @req = current_user.req_reassigns.build(req_params)
     if @req.save
-      # flash[:success] = t(:ok)
+      # flash[:success] = t(:ok)        
+      # @req.assignments.create(user_id: current_user.id, description: @req.info)
       redirect_to @req
     else
       render 'new'

@@ -1,9 +1,11 @@
 class ReqReassign < ActiveRecord::Base
   after_initialize :init
+  after_create :set_assignee
   belongs_to :user
   belongs_to :client
   belongs_to :old_manager, class_name: "User"
   belongs_to :new_manager, class_name: "User"
+  has_many :assignments, as: :assignable
   validates :new_manager_id, presence: true
   validates :old_manager_id, presence: true
   validates :client_id, presence: true
@@ -67,6 +69,10 @@ class ReqReassign < ActiveRecord::Base
     @hh["accepted_disapproved"]["info"] = false  
   end
 
+  def set_assignee
+    self.assignments.create(user_id: self.user_id, description: self.info)
+  end
+
   def assign_to_manager
     self.user_id = self.new_manager_id
     # if User.where(email: self.manager).exists?
@@ -99,8 +105,8 @@ class ReqReassign < ActiveRecord::Base
 
   def reassign_client
     Rails.logger.info('!!!!! reassign_client') 
-    Rails.logger.info(self.client.manager_id) 
-    Rails.logger.info(self.new_manager_id) 
+    # Rails.logger.info(self.client.manager_id) 
+    # Rails.logger.info(self.new_manager_id) 
     self.client.manager = self.new_manager
     self.client.save
   end  

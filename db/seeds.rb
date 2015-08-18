@@ -6,6 +6,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts 'Delete Assignments'
+Assignment.delete_all
+
 puts 'Delete ReqReassigns'
 ReqReassign.delete_all
 
