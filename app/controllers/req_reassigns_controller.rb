@@ -34,6 +34,7 @@ class ReqReassignsController < ApplicationController
   end
 
   def update
+    params[:req_reassign][:user_id] = current_user.id
     action = params[:commit]
     Rails.logger.info('!!!!!'+action) if action
     if action == 'save'
@@ -59,6 +60,6 @@ class ReqReassignsController < ApplicationController
   private
 
   def req_params
-    params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id)
+    params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id, :user_id)
   end     
 end

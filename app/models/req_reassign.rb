@@ -11,12 +11,12 @@ class ReqReassign < ActiveRecord::Base
   validates :client_id, presence: true
   validates :money, presence: true    
   state_machine :initial => :new do
-    before_transition any => :check_approval, :do => :assign_to_admin
     after_transition any => :check_approval, :do => :check_need_approval
     before_transition :check_approval => :wait_approval, :do => :assign_to_manager
     before_transition any => [:approved, :disapproved], :do => :assign_to_chief
     before_transition any => [:accepted_approved, :accepted_disapproved], :do => :assign_to_admin
     after_transition any => :accepted_approved, :do => :reassign_client
+    after_transition any => :closed, :do => :close_admin_assignment
     # before_transition any => any, :do => :set_new_user
 
     event :initiate do
@@ -74,23 +74,29 @@ class ReqReassign < ActiveRecord::Base
   end
 
   def assign_to_manager
-    self.user_id = self.new_manager_id
-    # if User.where(email: self.manager).exists?
-    #   self.user = User.where(email: self.manager).first
-    # end    
+    # self.user_id = self.new_manager_id
+    close_assignment(self.user_id)
+    new_assignment(self.new_manager_id)
   end
 
   def assign_to_chief
     Rails.logger.info('!!!!! assign to chief') 
     chief_email = OrgStructure.get_chief(self.new_manager.email)
-    Rails.logger.info('!!!!!' + chief_email) 
-    self.user = User.where("email = ?", chief_email).first
-    Rails.logger.info('!!!!!' + self.user.id.to_s) 
+    new_user_id = User.where("email = ?", chief_email).first.id
+    # Rails.logger.info('!!!!!' + self.user.id.to_s) 
+    close_assignment(self.user_id)
+    new_assignment(new_user_id)
   end
 
   def assign_to_admin
     Rails.logger.info('!!!!! assign to admin') 
-    self.user = User.where(email: 'admin@test.co').first
+    new_user_id = User.where(email: 'admin@test.co').first.id
+    close_assignment(self.user_id)
+    new_assignment(new_user_id)    
+  end
+
+  def close_admin_assignment
+    close_assignment(self.user_id)
   end
 
   def is_disabled?(field)
@@ -112,6 +118,32 @@ class ReqReassign < ActiveRecord::Base
   end  
 
   private  
+
+  def close_assignment(user_id)
+    Rails.logger.info('!!!!! close assignment') 
+    Rails.logger.info(user_id)
+    current_assignment = self.assignments.where(closed: false, user_id: user_id).first
+    current_assignment.update_attributes(closed: true) if !current_assignment.nil?
+  end
+
+  def new_assignment(user_id)
+    Rails.logger.info('!!!!! open assignment') 
+    opened_assignments = self.assignments.where(closed: false, user_id: user_id).count
+    if opened_assignments == 0
+      self.assignments.create(user_id: user_id, description: self.info)  
+    end         
+  end
+
+  # def assign_to(old_user_id = nil, new_user_id = nil)
+  #   opened_assignments = self.assignments.where(closed: false).count
+  #   if opened_assignments == 1
+  #     current_assignment = self.assignments.where(closed: false).first
+  #     current_assignment.update_attributes(closed: true)
+  #     self.assignments.create(user_id: new_user_id, description: self.info)           
+  #   else
+  #     lkjljk
+  #   end
+  # end
 
   def check_need_approval
   	if self.money > 1000
