@@ -117,6 +117,25 @@ class ReqReassign < ActiveRecord::Base
     self.client.save
   end  
 
+  def is_assigned?(user_id)
+    self.assignments.where(closed: false, user_id: user_id).first.nil? ? false : true
+  end
+
+  # def opened_assignments
+  #   self.assignments.where(closed: false)
+  # end
+
+  def opened_assignment_users
+    assignments = self.assignments.where(closed: false)
+    Rails.logger.info('!!!!! opened_assignment_users') 
+    Rails.logger.info(assignments.count) 
+    if assignments.count > 0
+      assignments.map {|x| x.user.name }.join(', ')
+    else
+      ""
+    end
+  end
+
   private  
 
   def close_assignment(user_id)

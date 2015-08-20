@@ -11,8 +11,8 @@
       <th><%= ReqReassign.human_attribute_name("state") %></th>
       <th><%= t(:curr_user) %></th>
       <th><%= ReqReassign.human_attribute_name("name") %></th>
-      <th><%= ReqReassign.human_attribute_name("old_manager") %></th>
-      <th><%= ReqReassign.human_attribute_name("manager") %></th>
+      <th><%= ReqReassign.human_attribute_name("old_manager_id") %></th>
+      <th><%= ReqReassign.human_attribute_name("new_manager_id") %></th>
       <th><div align="right" data-toggle="tooltip" data-placement="top" title="Согласование требуется если доход более 1 000"><%= ReqReassign.human_attribute_name("money") %></div></th>
     </tr>
   </thead>
@@ -20,13 +20,13 @@
   <% @reqs.each do |req| %>
     <tr>
       <td>
-        <% if req.user == current_user %>
+        <% if req.is_assigned?(current_user) %>
           <%= link_to 'Ред.', edit_req_reassign_path(req) %>
         <% end %>   
       </td>
       <td><%= link_to req.id, req %></td>
       <td><%= req.state %></td>
-      <td><%= req.user.name %></td>
+      <td><%= req.opened_assignment_users %></td>
       <td><%= req.client.name %></td>
       <td><%= req.old_manager.name %></td>
       <td><%= req.new_manager.name %></td>

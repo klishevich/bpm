@@ -3,7 +3,7 @@
     <div class="form-group fl1">
       <%= link_to t(:home_link), root_path, class: "btn btn-default", id: "btn-home" %>
     </div>
-    <% if @req.user == current_user %>
+    <% if @req.is_assigned?(current_user) %>
       <div class="form-group fl1">
         <%= link_to 'Редактировать', edit_req_reassign_path(@req), class: "btn btn-success" %>
       </div> 
