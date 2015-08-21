@@ -1,5 +1,6 @@
 class ReqReassignsController < ApplicationController
   before_action :authenticate_user!
+  before_filter :not_assigned, only: [:edit, :update]
 
   def index
   	@reqs = ReqReassign.where('state not in (?)', 'closed').order('id desc')
@@ -62,4 +63,12 @@ class ReqReassignsController < ApplicationController
   def req_params
     params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id, :user_id)
   end     
+
+  def not_assigned
+    req = ReqReassign.find(params[:id])
+    unless req.is_assigned?(current_user)
+      redirect_to root_path
+    end   
+  end
+
 end
