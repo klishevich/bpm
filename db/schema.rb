@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817194216) do
+ActiveRecord::Schema.define(version: 20150822195959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150817194216) do
   end
 
   add_index "clients", ["manager_id"], name: "index_clients_on_manager_id", using: :btree
+
+  create_table "req_purchases", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "money"
+    t.integer  "last_user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "req_reassigns", force: :cascade do |t|
     t.string   "state",          default: "new"
