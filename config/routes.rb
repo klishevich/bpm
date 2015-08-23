@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # get 'req_reassigns/create'
 
   # get 'req_reassigns/show'
+  resources :req_purchases
 
   resources :req_reassigns
 

@@ -1,0 +1,42 @@
+<h1>Список заявок на закупку</h1>
+<div class="form-group">
+  <%= link_to t(:new_req), new_req_purchase_path, class: "btn btn-success"%>
+</div>
+<div class="span12">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th></th>
+      <th><%= ReqPurchase.human_attribute_name("id") %></th>
+      <th><%= ReqPurchase.human_attribute_name("state") %></th>
+      <th><%= t(:curr_user) %></th>
+      <th><%= ReqPurchase.human_attribute_name("name") %></th>
+      <th><div align="right" data-toggle="tooltip" data-placement="top" title="Тут можно написать примечание"><%= ReqPurchase.human_attribute_name("money") %></div></th>         
+      <th><%= ReqPurchase.human_attribute_name("last_user_id") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reqs.each do |req| %>
+    <tr>
+      <td>
+        <% if req.is_assigned?(current_user) %>
+          <%= link_to 'Ред.', edit_req_purchase_path(req) %>
+        <% end %>   
+      </td>
+      <td><%= link_to req.id, req %></td>
+      <td><%= req.state %></td>
+      <td><%= req.opened_assignment_users %></td>
+      <td><%= req.name %></td>
+      <td style="text-align: right"><%= number_to_currency(req.money, :unit => "") %></td>
+      <td><%= req.last_user.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+

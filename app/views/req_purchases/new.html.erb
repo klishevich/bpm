@@ -1,0 +1,13 @@
+<h1 id="new">Создать заявку</h1>
+<%= render 'create_buttons' %>
+<div class="row">
+	<div class="col-md-6 col-sm-6">
+		<%= simple_form_for(@req) do |f| %>
+		  <%= f.input :name %>
+		  <%= f.input :money %>
+		  <div class="form-group fl1"><%= f.submit :save, class: "btn btn-success"%></div>
+		<% end %>
+	</div>
+</div>
+<%= render 'create_buttons' %>
+
