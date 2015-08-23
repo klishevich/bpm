@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150822195959) do
     t.string   "assignable_type"
     t.string   "description"
     t.boolean  "closed",          default: false
+    t.string   "result"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

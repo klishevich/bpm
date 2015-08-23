@@ -5,6 +5,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.references :assignable, polymorphic: true, index: true
       t.string :description
       t.boolean :closed, default: false
+      t.string :result
       t.timestamps null: false
     end
   end
