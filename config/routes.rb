@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'assignments' => 'assignments#index'
+
   get 'static_pages/home'
 
   devise_for :users

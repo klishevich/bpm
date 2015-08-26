@@ -1,0 +1,25 @@
+<h1>Список моих заданий</h1>
+<div class="span12">
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th><%= Assignment.human_attribute_name("id") %></th>
+      <th><%= Assignment.human_attribute_name("user_id") %></th>
+      <th>Тип задания</th>
+      <th><%= Assignment.human_attribute_name("description") %></th>        
+      <th><%= Assignment.human_attribute_name("closed") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @assignments.each do |ass| %>
+    <tr>
+      <td><%= link_to ass.id, ass.assignable %></td>
+      <td><%= ass.user.name %></td>
+      <td><%= ass.assignable_type %></td>
+      <td><%= ass.description %></td>
+      <td><%= ass.closed %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

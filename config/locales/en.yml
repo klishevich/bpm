@@ -230,6 +230,11 @@ en:
         name: "Закупка"
         money: "Стоимость"
         last_user_id: "Последний пользователь"
+      assignment:
+        id: "Номер задачи"
+        user_id: "Исполнитель"
+        description: "Описание задания"
+        closed: "Закрыто?"
   save: "Save"
   new_req: "Новая заявка"
   curr_user: "Текущее назначение"
