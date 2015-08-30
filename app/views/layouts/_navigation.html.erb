@@ -1,0 +1,51 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">
+                                    <% if current_user %><%= current_user.name %><% end %>
+                                </strong>
+                            </span> <span class="text-muted text-xs block">Главное меню <b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <% if user_signed_in? %>
+                            <li><%= link_to 'Выход', destroy_user_session_path, :method=>'delete' %></li>
+                        <% else %>
+                            <li><%= link_to 'Регистрация', new_user_registration_path %></li>
+                            <li><%= link_to 'Вход', new_user_session_path %></li> 
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li class="<%= 'active' if current_page?('/') %>">
+                <%= link_to "/" do %>
+                <i class="fa fa-home"></i> <span class="nav-label">Главная</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if current_page?('/assignments') %>">
+                <%= link_to "/assignments" do %>
+                <i class="fa fa-tasks"></i> <span class="nav-label">Мои задания</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if current_page?('/req_purchases') %>">
+                <%= link_to "/req_purchases" do %>
+                <i class="fa fa-money"></i> <span class="nav-label">Заявки на закупку</span>
+                <% end %>
+            </li>        
+            <li class="<%= 'active' if current_page?('/req_reassigns') %>">
+                <%= link_to "/req_reassigns" do %>
+                <i class="fa fa-user"></i> <span class="nav-label">Заявки на перезакрепление</span>
+                <% end %>
+            </li> 
+        </ul>
+
+    </div>
+</nav>

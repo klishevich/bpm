@@ -37,9 +37,15 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    autoprefixer-rails (5.2.1.2)
+      execjs
+      json
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.5)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -71,7 +77,6 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
-    commonjs (0.2.7)
     debug_inspector (0.0.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -85,6 +90,8 @@ GEM
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -97,14 +104,6 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     kgio (2.9.3)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.7.0)
-      actionpack (>= 4.0)
-      less (~> 2.6.0)
-      sprockets (> 2, < 4)
-      tilt
-    libv8 (3.16.14.7)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -151,7 +150,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    ref (1.0.5)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-core (3.3.1)
@@ -203,19 +201,11 @@ GEM
     state_machines-activerecord (0.2.0)
       activerecord (~> 4.1)
       state_machines-activemodel (~> 0.1.0)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
     turbolinks (2.5.3)
       coffee-rails
-    twitter-bootstrap-rails (3.2.0)
-      actionpack (~> 4.1)
-      execjs (~> 2.2)
-      rails (~> 4.1)
-      railties (~> 4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -239,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.3.5)
   byebug
   capistrano (~> 3.1)
   capistrano-bundler (~> 1.1)
@@ -248,9 +239,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   factory_girl
+  font-awesome-rails (= 4.3.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  less-rails
   pg
   rails (= 4.2.1)
   rspec-rails (~> 3.0)
@@ -260,9 +251,7 @@ DEPENDENCIES
   simple_form
   spring
   state_machines-activerecord
-  therubyracer
   turbolinks
-  twitter-bootstrap-rails
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)

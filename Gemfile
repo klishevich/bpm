@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'font-awesome-rails', '4.3.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -38,9 +40,9 @@ gem 'state_machines-activerecord'
 
 gem 'ruby-graphviz', :require => 'graphviz'
 
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+# gem "therubyracer"
+# gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+# gem "twitter-bootstrap-rails"
 
 gem 'simple_form'
 

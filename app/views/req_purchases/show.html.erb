@@ -1,14 +1,16 @@
-<h1 id="show">Просмотр заявки на закупку</h1>
-<%= render 'actions_and_assignees' %>
-<%= render 'show_buttons' %>
-<div class="row">
-  <div class="col-md-6">
-    <%= simple_form_for(@req) do |f| %>
-      <%= f.input :id, disabled: true %>      
-      <%= f.input :state, disabled: true %>   
-      <%= f.input :name, disabled: true %> 
-      <%= f.input :money, disabled: true %>   
-    <% end %>  
-  </div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+		<h1 id="show">Просмотр заявки на закупку</h1>
+		<%= render 'actions_and_assignees' %>
+		<%= render 'show_buttons' %>
+		    <%= simple_form_for(@req) do |f| %>
+		      <%= f.input :id, disabled: true %>      
+		      <%= f.input :state, disabled: true %>   
+		      <%= f.input :name, disabled: true %> 
+		      <%= f.input :money, disabled: true %>   
+		    <% end %>  
+		<%= render 'show_buttons' %>
+	</div>
 </div>
-<%= render 'show_buttons' %>
+
+
