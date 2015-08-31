@@ -1,10 +1,120 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Главная</h2>
+	</div>
+</div>
+
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center m-t-lg">
-                <h1>Добро пожаловать в BPM on Rails</h1>
-                <small><span>Список новостей тут!</span></small>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+	    <div class="col-lg-3">
+	        <div class="widget style1">
+	            <div class="row">
+	                <div class="col-xs-4 text-center">
+	                    <i class="fa fa-flash fa-5x"></i>
+	                </div>
+	                <div class="col-xs-8 text-right">
+	                    <span> Аварии за сутки</span>
+	                    <h2 class="font-bold">2</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="widget style1 navy-bg">
+	            <div class="row">
+	                <div class="col-xs-4">
+	                    <i class="fa fa-tasks fa-5x"></i>
+	                </div>
+	                <div class="col-xs-8 text-right">
+	                    <span> Новые задачи </span>
+	                    <h2 class="font-bold"><a href="/assignments" style="color:white;"><%= Assignment.where(closed: false, user_id: current_user.id).count %></a></h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="widget style1 lazur-bg">
+	            <div class="row">
+	                <div class="col-xs-4">
+	                    <i class="fa fa-envelope-o fa-5x"></i>
+	                </div>
+	                <div class="col-xs-8 text-right">
+	                    <span> Сообщения </span>
+	                    <h2 class="font-bold">13</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-3">
+	        <div class="widget style1 yellow-bg">
+	            <div class="row">
+	                <div class="col-xs-4">
+	                    <i class="fa fa-bug fa-5x"></i>
+	                </div>
+	                <div class="col-xs-8 text-right">
+	                    <span> Проблемы </span>
+	                    <h2 class="font-bold">12</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-lg-4">
+	        <div class="widget-head-color-box navy-bg p-lg text-center">
+	            <div class="m-b-md">
+	                <h2 class="font-bold no-margins">
+	                    Иван Колесников
+	                </h2>
+	                <small>Лучший сотрудник</small>
+	            </div>
+	            <img src="<%= image_path('a4.jpg') %>" class="img-circle circle-border m-b-md" alt="profile">
+	            <div>
+	                <span>140 Задача</span> |
+	                <span>20 Проблем</span> |
+	                <span>40 Спасибо</span>
+	            </div>
+	        </div>
+	        <div class="widget-text-box">
+	            <h4 class="media-heading">Иван Колесников</h4>
+	            <p>Менеджер отдела продаж, работает с 2013 года. Его девиз - быть лучше, работать в команде и радоваться жизни!</p>
+	        </div>
+	    </div>
+	    <div class="col-lg-2">
+	        <div class="widget navy-bg p-lg text-center">
+	            <div class="m-b-md">
+	                <i class="fa fa-thumbs-up fa-4x"></i>
+	                <h1 class="m-xs">23</h1>
+	                <h3 class="font-bold no-margins">
+	                    Лайки
+	                </h3>
+	                <small>за месяц</small>
+	            </div>
+	        </div>
+	        <div class="widget  p-lg text-center">
+	            <div class="m-b-md">
+	                <i class="fa fa-trophy fa-4x"></i>
+	                <h1 class="m-xs">73</h1>
+	                <h3 class="font-bold no-margins">
+	                    Задач
+	                </h3>
+	                <small>закрыто за месяц</small>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-lg-6">
+	        <div class="ibox float-e-margins">
+	            <div class="ibox-content">
+	                <h2>Новости</h2>
+	                <small>Последние новости за неделю</small>
+	                <ul class="todo-list m-t small-list">
+	                    <li>1 сент.: Корпоративный праздник пройдет, 13 сентября в 10 вечера в кафе Белый ЖУРАВЛЬ. В праздновании примут участия солисты Фабрики звезд.</li>
+	                    <li>29 авг.: Новый директор по технологиям в компании - Иванов Иван Иванович. Просим любить и жаловать!</li>           	                    
+	                    <li>28 авг.: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+	                    <li>25 авг.: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</div>	
 </div>

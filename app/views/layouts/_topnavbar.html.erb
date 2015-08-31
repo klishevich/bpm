@@ -1,5 +1,6 @@
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <% if user_signed_in? %>
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" method="post" action="/">
@@ -8,6 +9,7 @@
                 </div>
             </form>
         </div>
+        <% end %>
         <ul class="nav navbar-top-links navbar-right">
             <% if user_signed_in? %>
                 <li><%= link_to 'Выход', destroy_user_session_path, method: :delete %></li>
