@@ -34,7 +34,7 @@
                 <i class="fa fa-tasks"></i> <span class="nav-label">Мои задания</span>
                 <% end %>
             </li>
-            <li class="<%= 'active' if current_page?('/req_purchases') %>">
+            <li class="<%= 'active' if is_active_controller?('req_purchases') %>">
                 <%= link_to "/req_purchases" do %>
                 <i class="fa fa-money"></i> <span class="nav-label">Заявки на закупку</span>
                 <% end %>

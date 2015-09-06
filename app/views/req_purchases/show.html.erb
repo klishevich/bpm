@@ -1,16 +1,49 @@
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-		<h1 id="show">Просмотр заявки на закупку</h1>
-		<%= render 'actions_and_assignees' %>
-		<%= render 'show_buttons' %>
-		    <%= simple_form_for(@req) do |f| %>
-		      <%= f.input :id, disabled: true %>      
-		      <%= f.input :state, disabled: true %>   
-		      <%= f.input :name, disabled: true %> 
-		      <%= f.input :money, disabled: true %>   
-		    <% end %>  
-		<%= render 'show_buttons' %>
-	</div>
+  <div class="col-lg-10">
+    <h2>Просмотр заявки на закупку</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/">Главная</a>
+        </li>
+        <li>
+          <a href="/req_purchases">Заявки на закупку</a>
+        </li>        
+        <li class="active">
+          <strong>Просмотр</strong>
+        </li>
+      </ol>    
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+            	<h5>Информация о заявке на закупку</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+				<%= render 'actions_and_assignees' %>
+				<div class="hr-line-dashed"></div>
+				<%= render 'show_buttons' %>
+				    <%= simple_form_for(@req) do |f| %>
+				      <%= f.input :id, disabled: true %>      
+				      <%= f.input :state, disabled: true %>   
+				      <%= f.input :name, disabled: true %> 
+				      <%= f.input :money, disabled: true %>   
+				    <% end %>  
+				<%= render 'show_buttons' %>            	
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 

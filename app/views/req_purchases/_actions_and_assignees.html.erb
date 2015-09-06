@@ -1,10 +1,2 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="alert alert-info" role="alert">
-      <b>Доступные действия:</b><br/>
-      <%= @req.state_events %><br/>
-      <b>Текущее назначение:</b><br/>
-      <%= @req.opened_assignment_users %>      
-    </div>
-  </div>
-</div>
+<p>Вам доступны следующие действия: <%= @req.state_events.join(", ") %></p>
+<p>Текущее назначение: <%= @req.opened_assignment_users %></p>
