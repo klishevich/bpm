@@ -26,7 +26,7 @@
 	                    <i class="fa fa-tasks fa-5x"></i>
 	                </div>
 	                <div class="col-xs-8 text-right">
-	                    <span> Новые задачи </span>
+	                    <span> Открытые задачи </span>
 	                    <h2 class="font-bold"><a href="/assignments" style="color:white;"><%= Assignment.where(closed: false, user_id: current_user.id).count %></a></h2>
 	                </div>
 	            </div>

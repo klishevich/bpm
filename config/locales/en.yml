@@ -234,7 +234,7 @@ en:
         id: "Номер задачи"
         user_id: "Исполнитель"
         description: "Описание задания"
-        closed: "Закрыто?"
+        closed: "Закрыто"
   save: "Save"
   new_req: "Новая заявка"
   curr_user: "Текущее назначение"
