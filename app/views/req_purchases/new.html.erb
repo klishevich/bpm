@@ -1,13 +1,45 @@
-<h1 id="new">Создать заявку</h1>
-<%= render 'create_buttons' %>
-<div class="row">
-	<div class="col-md-6 col-sm-6">
-		<%= simple_form_for(@req) do |f| %>
-		  <%= f.input :name %>
-		  <%= f.input :money %>
-		  <div class="form-group fl1"><%= f.submit :save, class: "btn btn-success"%></div>
-		<% end %>
-	</div>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Создать заявку на закупку</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/">Главная</a>
+        </li>
+        <li>
+          <a href="/req_purchases">Заявки на закупку</a>
+        </li>               
+        <li class="active">
+          <strong>Создание</strong>
+        </li>
+      </ol>    
+  </div>
 </div>
-<%= render 'create_buttons' %>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+              	<h5>Создание заявки на закупку</h5>
+                  <div class="ibox-tools">
+                      <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                      </a>
+                      <a class="close-link">
+                          <i class="fa fa-times"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+				<%= simple_form_for(@req) do |f| %>
+				  <%= f.input :name %>
+				  <%= f.input :money %>
+				  <div class="form-group">
+				  	<%= f.submit :save, class: "btn btn-primary"%>
+				  </div>
+				<% end %>           	
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
