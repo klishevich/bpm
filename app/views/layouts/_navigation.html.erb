@@ -39,7 +39,7 @@
                 <i class="fa fa-money"></i> <span class="nav-label">Заявки на закупку</span>
                 <% end %>
             </li>        
-            <li class="<%= 'active' if current_page?('/req_reassigns') %>">
+            <li class="<%= 'active' if is_active_controller?('req_reassigns') %>">
                 <%= link_to "/req_reassigns" do %>
                 <i class="fa fa-user"></i> <span class="nav-label">Заявки на перезакрепление</span>
                 <% end %>

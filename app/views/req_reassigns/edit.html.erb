@@ -1,4 +1,51 @@
-<h1>Редактировать заявку</h1>
-<%= render 'edit_buttons' %>
-<%= render 'form' %>
-<%= render 'edit_buttons' %>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Редактировать заявку на перезакрепление</h2>
+      <ol class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/req_purchases">Заявки на перезакрепление</a></li>      
+        <li><%= link_to "Заявка #{@req.id}", @req %></li>          
+        <li class="active"><strong>Редактирование</strong></li>
+      </ol>    
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <h5>Редактирование заявки на перезакрепление</h5>
+                  <div class="ibox-tools">
+                      <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                      </a>
+                      <a class="close-link">
+                          <i class="fa fa-times"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                <%= render 'shared/actions_and_assignees' %>
+                <div class="hr-line-dashed"></div>
+                <%= simple_form_for(@req) do |f| %>
+                <%= f.input :id, disabled: true %>
+                <%= f.input :state, disabled: true %>
+                <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, disabled: true %>
+                <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("client")%>
+                <%= f.input :old_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true %>
+                <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("new_manager")  %>
+                <%= f.input :money, disabled: @req.is_disabled?("money") %>
+                <%= f.input :info, disabled: @req.is_disabled?("info") %>
+                <div class="form-group">
+                  <%= link_to "Отмена", @req, class: "btn btn-white"%>
+                  <%= f.submit :save, class: "btn btn-primary"%>
+                  <% @req.state_events.each do |x| %>
+                  <%= f.submit x, class: "btn btn-primary"%>
+                  <% end %>
+                </div>
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
