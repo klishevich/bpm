@@ -5,11 +5,13 @@ class ReqPurchase < ActiveRecord::Base
   validates :money, presence: true    
   validates :name, presence: true
   belongs_to :last_user, class_name: "User"
+  has_many :histories, as: :historyable
 
   state_machine :initial => :new do
     before_transition :new => :wait_approval, :do => :create_assignments
     after_transition :wait_approval => :approved, :do => :approve_assignment
     after_transition :wait_approval => :disapproved, :do => :disapprove_assignment
+    after_transition any => any, :do => :write_history
 
     event :initiate do
       transition :new => :wait_approval
@@ -150,6 +152,13 @@ class ReqPurchase < ActiveRecord::Base
     if opened_assignments == 0
       self.assignments.create(user_id: user_id, description: self.name)  
     end         
+  end
+
+  def write_history
+    Rails.logger.info('!!!!! write_history') 
+    text = 'user ' + self.last_user.name + ' changed state to ' + self.state
+    self.histories.create(state: self.state, user_id: self.last_user_id, description: text, 
+      new_values: 'TO DO')
   end
 
 end

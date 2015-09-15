@@ -10,6 +10,8 @@ class ReqReassign < ActiveRecord::Base
   validates :old_manager_id, presence: true
   validates :client_id, presence: true
   validates :money, presence: true    
+  has_many :histories, as: :historyable
+
   state_machine :initial => :new do
     after_transition any => :check_approval, :do => :check_need_approval
     before_transition :check_approval => :wait_approval, :do => :assign_to_manager
@@ -18,6 +20,8 @@ class ReqReassign < ActiveRecord::Base
     after_transition any => :accepted_approved, :do => :reassign_client
     after_transition any => :closed, :do => :close_admin_assignment
     # before_transition any => any, :do => :set_new_user
+    after_transition any => any - :check_approval, :do => :write_history
+
 
     event :initiate do
       transition :new => :check_approval
@@ -163,6 +167,13 @@ class ReqReassign < ActiveRecord::Base
   #     lkjljk
   #   end
   # end
+
+  def write_history
+    Rails.logger.info('!!!!! write_history') 
+    text = 'user ' + self.user.name + ' changed state to ' + self.state
+    self.histories.create(state: self.state, user_id: self.user_id, description: text, 
+      new_values: 'TO DO')
+  end  
 
   def check_need_approval
   	if self.money > 1000

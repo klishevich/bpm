@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822195959) do
+ActiveRecord::Schema.define(version: 20150915201703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 20150822195959) do
   end
 
   add_index "clients", ["manager_id"], name: "index_clients_on_manager_id", using: :btree
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "historyable_id"
+    t.string   "historyable_type"
+    t.string   "state"
+    t.integer  "user_id"
+    t.text     "description"
+    t.text     "new_values"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "histories", ["historyable_type", "historyable_id"], name: "index_histories_on_historyable_type_and_historyable_id", using: :btree
+  add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
   create_table "req_purchases", force: :cascade do |t|
     t.string   "state",        default: "new"
@@ -87,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150822195959) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "assignments", "users"
+  add_foreign_key "histories", "users"
   add_foreign_key "req_reassigns", "clients"
   add_foreign_key "req_reassigns", "users"
 end
