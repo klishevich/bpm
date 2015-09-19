@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150915201703) do
   create_table "req_reassigns", force: :cascade do |t|
     t.string   "state",          default: "new"
     t.integer  "last_user_id"
+    t.string   "name"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "role"

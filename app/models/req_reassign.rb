@@ -1,4 +1,5 @@
 class ReqReassign < ActiveRecord::Base
+  include ReqMain
   after_initialize :init
   after_create :set_assignee
   belongs_to :last_user, class_name: "User"
@@ -60,21 +61,17 @@ class ReqReassign < ActiveRecord::Base
   def init
     self.role ||= 'manager'
     self.state ||= 'new' 
-    @hh = Hash.new{|hash, key| hash[key] = Hash.new}
+    @disabled = Hash.new{|hash, key| hash[key] = Hash.new}
     # set false to show field
-    @hh["new"]["new_manager"] = false
-    @hh["new"]["money"] = false
-    @hh["new"]["info"] = false
-    @hh["new"]["client"] = false
-    @hh["wait_approval"]["info"] = false
-    @hh["approved"]["info"] = false
-    @hh["disapproved"]["info"] = false
-    @hh["accepted_approved"]["info"] = false
-    @hh["accepted_disapproved"]["info"] = false  
-  end
-
-  def set_assignee
-    self.assignments.create(user_id: self.last_user_id, description: self.info)
+    @disabled["new"]["new_manager"] = false
+    @disabled["new"]["money"] = false
+    @disabled["new"]["info"] = false
+    @disabled["new"]["client"] = false
+    @disabled["wait_approval"]["info"] = false
+    @disabled["approved"]["info"] = false
+    @disabled["disapproved"]["info"] = false
+    @disabled["accepted_approved"]["info"] = false
+    @disabled["accepted_disapproved"]["info"] = false  
   end
 
   def assign_to_manager
@@ -102,16 +99,6 @@ class ReqReassign < ActiveRecord::Base
     close_assignment(self.last_user_id)
   end
 
-  def is_disabled?(field)
-    res = @hh[self.state][field]
-    res = true if res.nil?
-    res
-  end
-
-  def test
-    @hh["new"]["name"]
-  end
-
   def reassign_client
     Rails.logger.info('!!!!! reassign_client') 
     # Rails.logger.info(self.client.manager_id) 
@@ -120,59 +107,7 @@ class ReqReassign < ActiveRecord::Base
     self.client.save
   end  
 
-  def is_assigned?(user_id)
-    self.assignments.where(closed: false, user_id: user_id).first.nil? ? false : true
-  end
-
-  # def opened_assignments
-  #   self.assignments.where(closed: false)
-  # end
-
-  def opened_assignment_users
-    assignments = self.assignments.where(closed: false)
-    Rails.logger.info('!!!!! opened_assignment_users') 
-    Rails.logger.info(assignments.count) 
-    if assignments.count > 0
-      assignments.map {|x| x.user.name }.join(', ')
-    else
-      ""
-    end
-  end
-
   private  
-
-  def close_assignment(user_id)
-    Rails.logger.info('!!!!! close assignment') 
-    Rails.logger.info(user_id)
-    current_assignment = self.assignments.where(closed: false, user_id: user_id).first
-    current_assignment.update_attributes(closed: true) if !current_assignment.nil?
-  end
-
-  def new_assignment(user_id)
-    Rails.logger.info('!!!!! open assignment') 
-    opened_assignments = self.assignments.where(closed: false, user_id: user_id).count
-    if opened_assignments == 0
-      self.assignments.create(user_id: user_id, description: self.info)  
-    end         
-  end
-
-  # def assign_to(old_user_id = nil, new_user_id = nil)
-  #   opened_assignments = self.assignments.where(closed: false).count
-  #   if opened_assignments == 1
-  #     current_assignment = self.assignments.where(closed: false).first
-  #     current_assignment.update_attributes(closed: true)
-  #     self.assignments.create(user_id: new_user_id, description: self.info)           
-  #   else
-  #     lkjljk
-  #   end
-  # end
-
-  def write_history
-    Rails.logger.info('!!!!! write_history') 
-    text = self.last_user.name + I18n.t(:changed_state_to) + self.state
-    self.history.create(state: self.state, user_id: self.last_user_id, description: text, 
-      new_values: 'TO DO')
-  end  
 
   def check_need_approval
   	if self.money > 1000

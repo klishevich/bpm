@@ -3,6 +3,7 @@ class CreateReqReassigns < ActiveRecord::Migration
     create_table :req_reassigns do |t|
       t.string :state, :default => 'new'
       t.integer :last_user_id, index: true
+      t.string :name
       t.timestamps null: false
       
       t.string :role
