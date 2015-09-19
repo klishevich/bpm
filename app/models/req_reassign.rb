@@ -1,7 +1,7 @@
 class ReqReassign < ActiveRecord::Base
   after_initialize :init
   after_create :set_assignee
-  belongs_to :user
+  belongs_to :last_user, class_name: "User"
   belongs_to :client
   belongs_to :old_manager, class_name: "User"
   belongs_to :new_manager, class_name: "User"
@@ -74,12 +74,11 @@ class ReqReassign < ActiveRecord::Base
   end
 
   def set_assignee
-    self.assignments.create(user_id: self.user_id, description: self.info)
+    self.assignments.create(user_id: self.last_user_id, description: self.info)
   end
 
   def assign_to_manager
-    # self.user_id = self.new_manager_id
-    close_assignment(self.user_id)
+    close_assignment(self.last_user_id)
     new_assignment(self.new_manager_id)
   end
 
@@ -95,12 +94,12 @@ class ReqReassign < ActiveRecord::Base
   def assign_to_admin
     Rails.logger.info('!!!!! assign to admin') 
     new_user_id = User.where(email: 'admin@test.co').first.id
-    close_assignment(self.user_id)
+    close_assignment(self.last_user_id)
     new_assignment(new_user_id)    
   end
 
   def close_admin_assignment
-    close_assignment(self.user_id)
+    close_assignment(self.last_user_id)
   end
 
   def is_disabled?(field)
@@ -170,8 +169,8 @@ class ReqReassign < ActiveRecord::Base
 
   def write_history
     Rails.logger.info('!!!!! write_history') 
-    text = self.user.name + I18n.t(:changed_state_to) + self.state
-    self.history.create(state: self.state, user_id: self.user_id, description: text, 
+    text = self.last_user.name + I18n.t(:changed_state_to) + self.state
+    self.history.create(state: self.state, user_id: self.last_user_id, description: text, 
       new_values: 'TO DO')
   end  
 

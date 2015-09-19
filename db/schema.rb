@@ -38,8 +38,6 @@ ActiveRecord::Schema.define(version: 20150915201703) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "clients", ["manager_id"], name: "index_clients_on_manager_id", using: :btree
-
   create_table "histories", force: :cascade do |t|
     t.integer  "historyable_id"
     t.string   "historyable_type"
@@ -56,30 +54,32 @@ ActiveRecord::Schema.define(version: 20150915201703) do
 
   create_table "req_purchases", force: :cascade do |t|
     t.string   "state",        default: "new"
-    t.string   "name"
-    t.integer  "money"
     t.integer  "last_user_id"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "name"
+    t.integer  "money"
   end
+
+  add_index "req_purchases", ["last_user_id"], name: "index_req_purchases_on_last_user_id", using: :btree
 
   create_table "req_reassigns", force: :cascade do |t|
     t.string   "state",          default: "new"
-    t.string   "role"
-    t.integer  "money"
+    t.integer  "last_user_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "user_id"
-    t.text     "info"
-    t.integer  "client_id"
+    t.string   "role"
+    t.integer  "money"
     t.integer  "old_manager_id"
     t.integer  "new_manager_id"
+    t.integer  "client_id"
+    t.text     "info"
   end
 
   add_index "req_reassigns", ["client_id"], name: "index_req_reassigns_on_client_id", using: :btree
+  add_index "req_reassigns", ["last_user_id"], name: "index_req_reassigns_on_last_user_id", using: :btree
   add_index "req_reassigns", ["new_manager_id"], name: "index_req_reassigns_on_new_manager_id", using: :btree
   add_index "req_reassigns", ["old_manager_id"], name: "index_req_reassigns_on_old_manager_id", using: :btree
-  add_index "req_reassigns", ["user_id"], name: "index_req_reassigns_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -103,5 +103,4 @@ ActiveRecord::Schema.define(version: 20150915201703) do
   add_foreign_key "assignments", "users"
   add_foreign_key "histories", "users"
   add_foreign_key "req_reassigns", "clients"
-  add_foreign_key "req_reassigns", "users"
 end
