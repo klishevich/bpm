@@ -25,6 +25,7 @@ class ReqPurchasesController < ApplicationController
 
   def show
     @req = ReqPurchase.find(params[:id])
+    @history = @req.history
     respond_to do |format|
       format.html       
     end  	

@@ -25,6 +25,7 @@ class ReqReassignsController < ApplicationController
 
   def show
     @req = ReqReassign.find(params[:id])
+    @history = @req.history
     respond_to do |format|
       format.html       
     end  	

@@ -18,36 +18,36 @@
   <div class="row">
       <div class="col-lg-12">
           <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                <h5>Информация о заявке на перезакрепление</h5>
-                  <div class="ibox-tools">
-                      <a class="collapse-link">
-                          <i class="fa fa-chevron-up"></i>
-                      </a>
-                      <a class="close-link">
-                          <i class="fa fa-times"></i>
-                      </a>
+            <div class="tabs-container">
+              <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1">Информация о заявке на перезакрепление</a></li>
+                <li class=""><a data-toggle="tab" href="#tab-2">История изменений</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="tab-1" class="tab-pane active">
+                  <div class="panel-body">
+                    <%= render 'shared/actions_and_assignees' %>
+                    <div class="hr-line-dashed"></div>
+                    <%= simple_form_for(@req) do |f| %>
+                      <%= f.input :id, disabled: true %>      
+                      <%= f.input :state, disabled: true %> 
+                      <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, disabled: true %>
+                      <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: true %>   
+                      <%= f.input :old_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true %>
+                      <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true  %>   
+                      <%= f.input :money, disabled: true %>   
+                      <%= f.input :info, disabled: true %> 
+                    <% end %>  
+                    <% if @req.is_assigned?(current_user) %>
+                      <div class="form-group">
+                        <%= link_to 'Редактировать', edit_req_reassign_path(@req), class: "btn btn-primary" %>
+                      </div> 
+                    <% end %>  
                   </div>
+                </div>
+                <%= render 'shared/history_tab' %>               
               </div>
-              <div class="ibox-content">
-              <%= render 'shared/actions_and_assignees' %>
-              <div class="hr-line-dashed"></div>
-              <%= simple_form_for(@req) do |f| %>
-                <%= f.input :id, disabled: true %>      
-                <%= f.input :state, disabled: true %> 
-                <%= f.input :user_id, collection: User.all, label_method: :name, value_method: :id, disabled: true %>
-                <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: true %>   
-                <%= f.input :old_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true %>
-                <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true  %>   
-                <%= f.input :money, disabled: true %>   
-                <%= f.input :info, disabled: true %> 
-              <% end %>  
-              <% if @req.is_assigned?(current_user) %>
-                <div class="form-group">
-                  <%= link_to 'Редактировать', edit_req_reassign_path(@req), class: "btn btn-primary" %>
-                </div> 
-              <% end %>               
-              </div>
+            </div>
           </div>
       </div>
   </div>

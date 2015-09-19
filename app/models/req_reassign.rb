@@ -10,7 +10,7 @@ class ReqReassign < ActiveRecord::Base
   validates :old_manager_id, presence: true
   validates :client_id, presence: true
   validates :money, presence: true    
-  has_many :histories, as: :historyable
+  has_many :history, as: :historyable
 
   state_machine :initial => :new do
     after_transition any => :check_approval, :do => :check_need_approval
@@ -170,8 +170,8 @@ class ReqReassign < ActiveRecord::Base
 
   def write_history
     Rails.logger.info('!!!!! write_history') 
-    text = 'user ' + self.user.name + ' changed state to ' + self.state
-    self.histories.create(state: self.state, user_id: self.user_id, description: text, 
+    text = self.user.name + I18n.t(:changed_state_to) + self.state
+    self.history.create(state: self.state, user_id: self.user_id, description: text, 
       new_values: 'TO DO')
   end  
 

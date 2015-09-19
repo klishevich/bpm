@@ -1,0 +1,28 @@
+<div id="tab-2" class="tab-pane">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th><%= History.human_attribute_name("created_at") %></th>
+                    <th><%= History.human_attribute_name("user_id") %></th>
+                    <th><%= History.human_attribute_name("state") %></th>
+                    <th><%= History.human_attribute_name("description") %></th>        
+                    <th><%= History.human_attribute_name("new_values") %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @history.each do |h| %>
+                    <tr>
+                      <td><%= h.created_at.strftime('%d.%m.%Y %T') %></td>
+                      <td><%= h.user.name %></td>
+                      <td><%= h.state %></td>
+                      <td><%= h.description %></td>
+                      <td><%= h.new_values %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>
+        </div>
+      </div>
+</div>

@@ -5,7 +5,7 @@ class ReqPurchase < ActiveRecord::Base
   validates :money, presence: true    
   validates :name, presence: true
   belongs_to :last_user, class_name: "User"
-  has_many :histories, as: :historyable
+  has_many :history, as: :historyable
 
   state_machine :initial => :new do
     before_transition :new => :wait_approval, :do => :create_assignments
@@ -156,8 +156,8 @@ class ReqPurchase < ActiveRecord::Base
 
   def write_history
     Rails.logger.info('!!!!! write_history') 
-    text = 'user ' + self.last_user.name + ' changed state to ' + self.state
-    self.histories.create(state: self.state, user_id: self.last_user_id, description: text, 
+    text = self.last_user.name + I18n.t(:changed_state_to) + self.state
+    self.history.create(state: self.state, user_id: self.last_user_id, description: text, 
       new_values: 'TO DO')
   end
 

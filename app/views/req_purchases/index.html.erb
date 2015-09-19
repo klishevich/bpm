@@ -57,7 +57,7 @@
                                 <td><%= req.opened_assignment_users %></td>
                                 <td><%= req.name %></td>
                                 <td style="text-align: right"><%= number_to_currency(req.money, :unit => "") %></td>
-                                <td><%= req.last_user.name %></td>
+                                <td><%= req.last_user.name unless req.last_user.nil?%></td>
                               </tr>
                             <% end %>                          
                           </tbody>
