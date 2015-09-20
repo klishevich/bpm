@@ -60,9 +60,14 @@ client2 = Client.where(name: "Рога и копыта").first
 puts 'ReqReassigns creation'
 
 ReqReassign.create([
-  { last_user_id: user1.id, client_id: client1.id, old_manager_id: user1.id, 
+  { name: "Перезакрепление первого пользователя",last_user_id: user1.id, client_id: client1.id, old_manager_id: user1.id, 
   	new_manager_id: user2.id, money: 10_000_000, info: "test1"},
-  { last_user_id: user2.id, client_id: client2.id, old_manager_id: user2.id, 
+  { name: "Перезакрепление второго пользователя", last_user_id: user2.id, client_id: client2.id, old_manager_id: user2.id, 
   	new_manager_id: user1.id, money: 123_000_000, info: "test2"}
+])
+
+ReqPurchase.create([
+  { name: "Закупка первого", last_user_id: user1.id, money: 1_000},
+  { name: "Закупка второго", last_user_id: user2.id, money: 2_000}
 ])
 

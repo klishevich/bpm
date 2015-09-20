@@ -10,7 +10,8 @@ class ReqReassign < ActiveRecord::Base
   validates :new_manager_id, presence: true
   validates :old_manager_id, presence: true
   validates :client_id, presence: true
-  validates :money, presence: true    
+  validates :money, presence: true
+  validates :name, presence: true  
   has_many :history, as: :historyable
 
   state_machine :initial => :new do
@@ -62,11 +63,12 @@ class ReqReassign < ActiveRecord::Base
     self.role ||= 'manager'
     self.state ||= 'new' 
     @disabled = Hash.new{|hash, key| hash[key] = Hash.new}
-    # set false to show field
+    # set false to edit field
     @disabled["new"]["new_manager"] = false
     @disabled["new"]["money"] = false
     @disabled["new"]["info"] = false
     @disabled["new"]["client"] = false
+    @disabled["new"]["name"] = false
     @disabled["wait_approval"]["info"] = false
     @disabled["approved"]["info"] = false
     @disabled["disapproved"]["info"] = false

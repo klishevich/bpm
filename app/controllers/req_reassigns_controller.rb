@@ -62,7 +62,7 @@ class ReqReassignsController < ApplicationController
   private
 
   def req_params
-    params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id, :last_user_id)
+    params.require(:req_reassign).permit(:old_manager_id, :money, :new_manager_id, :info, :client_id, :last_user_id, :name)
   end     
 
   def not_assigned

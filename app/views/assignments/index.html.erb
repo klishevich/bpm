@@ -43,6 +43,7 @@
                       <table class="table table-bordered">
                           <thead>
                             <tr>
+                              <th></th>
                               <th><%= Assignment.human_attribute_name("id") %></th>
                               <th><%= Assignment.human_attribute_name("user_id") %></th>
                               <th>Тип задания</th>
@@ -53,6 +54,13 @@
                           <tbody>
                             <% @assignments.each do |ass| %>
                               <tr>
+                                <td>
+                                  <% if ass.closed != true %>
+                                    <%= link_to [:edit, ass.assignable], class: "icon-block" do %>
+                                      <i class="fa fa-edit fa-2x"></i>
+                                    <% end %>
+                                  <% end %>
+                                </td>
                                 <td><%= link_to ass.id, ass.assignable %></td>
                                 <td><%= ass.user.name %></td>
                                 <td><%= ass.assignable_type %></td>

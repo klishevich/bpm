@@ -215,14 +215,13 @@ en:
         password_confirmation: "Пароль еще раз"
       req_reassign:
         id: "Номер"
-        name: "Клиент"
-        inn: "ИНН клиента"
+        name: "Описание"         
+        client_id: "Клиент"
         money: "Доход с клиента*"
         state: "Статус"
         old_manager_id: "Старый менеджер"
         new_manager_id: "Новый менеджер"
         info: "Дополнительная информация"
-        client_id: "Клиент"
         user_id: "Последний пользователь"
       req_purchase:
         id: "Номер"
