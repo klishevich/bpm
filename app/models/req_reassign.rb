@@ -84,7 +84,7 @@ class ReqReassign < ActiveRecord::Base
     chief_email = OrgStructure.get_chief(self.new_manager.email)
     new_user_id = User.where("email = ?", chief_email).first.id
     # Rails.logger.info('!!!!!' + self.user.id.to_s) 
-    close_assignment(self.user_id)
+    close_assignment(self.last_user_id)
     new_assignment(new_user_id)
   end
 
