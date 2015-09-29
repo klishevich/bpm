@@ -59,7 +59,7 @@ gem 'unicorn'
 
 gem 'devise'
 
-gem 'factory_girl'
+gem 'factory_girl_rails', '~> 4.5'
 
 gem 'capybara'
 
@@ -78,5 +78,8 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'database_cleaner'
+end
 
 

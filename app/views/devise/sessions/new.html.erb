@@ -10,7 +10,7 @@
 		<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>			    <%= f.input :email, required: false, autofocus: true  %>
 		    <%= f.input :password, required: false, id: "password" %>
 		    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-		    <%= f.button :submit, "Войти", id: "enter", class: "btn btn-success" %>
+		    <%= f.button :submit, "Войти", id: "log_in", class: "btn btn-success" %>
 		<% end %>
 
 		<%= render "devise/shared/links" %>

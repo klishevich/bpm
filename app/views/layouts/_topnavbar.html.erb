@@ -12,7 +12,7 @@
         <% end %>
         <ul class="nav navbar-top-links navbar-right">
             <% if user_signed_in? %>
-                <li><%= link_to 'Выход', destroy_user_session_path, method: :delete %></li>
+                <li><%= link_to 'Выход', destroy_user_session_path, id: "log_out", method: :delete %></li>
             <% else %>
                 <li><%= link_to 'Регистрация', new_user_registration_path %></li>
                 <li><%= link_to 'Вход', new_user_session_path %></li> 
