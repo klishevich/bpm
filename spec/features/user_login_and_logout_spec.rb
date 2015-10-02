@@ -6,7 +6,7 @@ feature "User logs in and logs out" do
   # browser driver configured in spec/support/capybara.rb
   scenario "with correct details" do
 
-    create(:user, email: "manager1@test.co", name: "Mike Klishevich", 
+    create(:user, email: "manager1@test.com", name: "Mike Klishevich", 
       password: "testtest")
 
     visit "/"
@@ -14,7 +14,7 @@ feature "User logs in and logs out" do
     expect(page).to have_css("h2", text: "Вход")
     expect(current_path).to eq(new_user_session_path)    
 
-    login "manager1@test.co", "testtest"
+    login "manager1@test.com", "testtest"
 
     # expect(page).to have_selector('a.font-bold', text: 'Mike')
 
