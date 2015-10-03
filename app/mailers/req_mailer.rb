@@ -4,7 +4,7 @@ class ReqMailer < ActionMailer::Base
   def new_assignment_notification(assignment)
     @assignment = assignment
     Rails.logger.debug 'test_email'
-    mail to: "m.klishevich@yandex.ru", subject: t(:new_req)
+    mail to: "m.klishevich@yandex.ru, #{@assignment.user.email}", subject: t(:new_req)
   end
 
   # def test_email1
