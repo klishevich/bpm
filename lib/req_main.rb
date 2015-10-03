@@ -38,7 +38,7 @@ module ReqMain
     Rails.logger.info('!!!!! new_assignment') 
     opened_assignments = self.assignments.where(closed: false, user_id: user_id).count
     if opened_assignments == 0
-      self.assignments.create(user_id: user_id, description: self.name)  
+      new_assignment = self.assignments.create(user_id: user_id, description: self.name)  
     end         
   end
 
@@ -48,4 +48,5 @@ module ReqMain
     self.history.create(state: self.state, user_id: self.last_user_id, description: text, 
       new_values: 'TO DO')
   end
+
 end

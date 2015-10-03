@@ -53,6 +53,7 @@ feature "Positive req_reassign path" do
 
     click_button('initiate')
 
+    expect(page).to have_css("h2", text: "Просмотр заявки на перезакрепление")
     expect(page).to have_css("b", text: "Менеджер Два")
     expect(page).to have_selector("input[value='wait_approval']")
     expect(page).to have_selector("input[value='999999']")
