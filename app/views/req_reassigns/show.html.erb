@@ -28,16 +28,38 @@
                   <div class="panel-body">
                     <%= render 'shared/actions_and_assignees' %>
                     <div class="hr-line-dashed"></div>
-                    <%= simple_form_for(@req) do |f| %>
-                      <%= f.input :id, disabled: true %>      
-                      <%= f.input :state, disabled: true %>
-                      <%= f.input :name, disabled: true %> 
-                      <%= f.input :client_id, collection: Client.order(:name).all, label_method: :name, value_method: :id, disabled: true %>   
-                      <%= f.input :old_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true %>
-                      <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: true  %>   
-                      <%= f.input :money, disabled: true %>   
-                      <%= f.input :info, disabled: true %> 
-                    <% end %>  
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("id") %></label>
+                      <p><%= @req.id %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("state") %></label>
+                      <p><%= @req.state %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("name") %></label>
+                      <p><%= @req.name %></p>
+                    </div> 
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("client_id") %></label>
+                      <p><%= @req.client.name %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("old_manager_id") %></label>
+                      <p><%= @req.old_manager.name %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("new_manager_id") %></label>
+                      <p><%= @req.new_manager.name %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("money") %></label>
+                      <p><%= number_to_currency(@req.money, locale: :ru) %></p>
+                    </div>
+                    <div class="form-group">
+                      <label><%= ReqReassign.human_attribute_name("info") %></label>
+                      <p><%= @req.info %></p>
+                    </div> 
                     <% if @req.is_assigned?(current_user) %>
                       <div class="form-group">
                         <%= link_to 'Редактировать', edit_req_reassign_path(@req), class: "btn btn-primary" %>

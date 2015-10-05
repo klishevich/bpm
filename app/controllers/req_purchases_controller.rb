@@ -36,9 +36,9 @@ class ReqPurchasesController < ApplicationController
   end
 
   def update
-  	params['req_purchase'] = Hash.new
-    Rails.logger.info('!!!!! update')   	
-    Rails.logger.info(params)   	
+  	# params['req_purchase'] = Hash.new
+    # Rails.logger.info('!!!!! update')   	
+    # Rails.logger.info(params)   	
     params[:req_purchase][:last_user_id] = current_user.id    
     action = params[:commit]
     Rails.logger.info('!!!!!'+action) if action

@@ -29,12 +29,22 @@
                       <div class="panel-body">
                         <%= render 'shared/actions_and_assignees' %>
                         <div class="hr-line-dashed"></div>
-                        <%= simple_form_for(@req) do |f| %>
-                          <%= f.input :id, disabled: true %>      
-                          <%= f.input :state, disabled: true %>   
-                          <%= f.input :name, disabled: true %> 
-                          <%= f.input :money, disabled: true %>   
-                        <% end %>  
+                        <div class="form-group">
+                          <label><%= ReqPurchase.human_attribute_name("id") %></label>
+                          <p><%= @req.id %></p>
+                        </div> 
+                        <div class="form-group">
+                          <label><%= ReqPurchase.human_attribute_name("state") %></label>
+                          <p><%= @req.state %></p>
+                        </div>
+                        <div class="form-group">
+                          <label><%= ReqPurchase.human_attribute_name("name") %></label>
+                          <p><%= @req.name %></p>
+                        </div>
+                        <div class="form-group">
+                          <label><%= ReqPurchase.human_attribute_name("money") %></label>
+                          <p><%= @req.money %></p>
+                        </div> 
                         <% if @req.is_assigned?(current_user) %>
                           <div class="form-group">
                             <%= link_to 'Редактировать', edit_req_purchase_path(@req), class: "btn btn-primary" %>

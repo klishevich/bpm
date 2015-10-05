@@ -217,7 +217,7 @@ en:
         id: "Номер"
         name: "Описание"         
         client_id: "Клиент"
-        money: "Доход с клиента*"
+        money: "Доход с клиента"
         state: "Статус"
         old_manager_id: "Старый менеджер"
         new_manager_id: "Новый менеджер"
