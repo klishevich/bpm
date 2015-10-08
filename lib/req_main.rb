@@ -20,6 +20,10 @@ module ReqMain
     res
   end  
 
+  def set_last_user(user)
+    self.last_user_id = user.id
+  end
+
   private
 
   def set_assignee 

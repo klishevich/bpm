@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                           <label><%= ReqPurchase.human_attribute_name("money") %></label>
-                          <p><%= @req.money %></p>
+                          <p><%= number_to_currency(@req.money, locale: :ru) %></p>
                         </div> 
                         <% if @req.is_assigned?(current_user) %>
                           <div class="form-group">

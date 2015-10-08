@@ -28,17 +28,17 @@
                 <%= render 'shared/actions_and_assignees' %>
                 <div class="hr-line-dashed"></div>
                 <%= simple_form_for(@req) do |f| %>
-                <%= f.input :id, disabled: true %>
-                <%= f.input :state, disabled: true %>
-                <%= f.input :name, disabled: @req.is_disabled?("name") %>
-                <%= f.input :money, disabled: @req.is_disabled?("money") %>
-                <div class="form-group">
-                  <%= link_to "Отмена", @req, class: "btn btn-white"%>
-                  <%= f.submit :save, class: "btn btn-primary"%>
-                  <% @req.state_events.each do |x| %>
-                  <%= f.submit x, class: "btn btn-primary"%>
-                  <% end %>
-                </div>
+                  <%= f.input :id, disabled: true %>
+                  <%= f.input :state, disabled: true %>
+                  <%= f.input :name, disabled: @req.is_disabled?("name") %>
+                  <%= f.input :money, disabled: @req.is_disabled?("money") %>
+                  <div class="form-group">
+                    <%= link_to "Отмена", @req, class: "btn btn-white"%>
+                    <%= f.submit :save, class: "btn btn-primary"%>
+                    <% @req.state_events.each do |x| %>
+                     <%= f.submit x, class: "btn btn-primary"%>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
           </div>

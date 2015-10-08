@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                       <label><%= ReqReassign.human_attribute_name("money") %></label>
-                      <p><%= number_to_currency(@req.money, locale: :ru) %></p>
+                      <p><%= number_to_currency(@req.money) %></p>
                     </div>
                     <div class="form-group">
                       <label><%= ReqReassign.human_attribute_name("info") %></label>

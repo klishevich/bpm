@@ -36,11 +36,13 @@ class ReqReassignsController < ApplicationController
   end
 
   def update
-    params[:req_reassign][:last_user_id] = current_user.id
+    # params[:req_reassign][:last_user_id] = current_user.id
+    @req = ReqReassign.find(params[:id])
+    @req.set_last_user(current_user)
     action = params[:commit]
     Rails.logger.info('!!!!!'+action) if action
     if action == 'save'
-      @req = ReqReassign.find(params[:id])
+      # @req = ReqReassign.find(params[:id])
       if @req.update_attributes(req_params)
         flash[:success] = 'req_updated_successfuly'
         redirect_to @req
@@ -48,7 +50,7 @@ class ReqReassignsController < ApplicationController
         render 'edit'
       end
     else
-      @req = ReqReassign.find(params[:id])
+      # @req = ReqReassign.find(params[:id])
       @req.assign_attributes(req_params)
       if @req.send(action)
         flash[:success] = 'req_updated_successfuly'

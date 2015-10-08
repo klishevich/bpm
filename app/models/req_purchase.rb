@@ -34,7 +34,7 @@ class ReqPurchase < ActiveRecord::Base
   private
 
   def init
-    self.last_user_id ||= User.where("email = ?", "admin@test.co").first.id
+    # self.last_user_id ||= User.where("email = ?", "admin@test.co").first.id
     self.state ||= 'new'
     # set false to show field for state in edit form    
     @disabled = Hash.new{|hash, key| hash[key] = Hash.new}

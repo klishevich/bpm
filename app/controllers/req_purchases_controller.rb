@@ -14,8 +14,9 @@ class ReqPurchasesController < ApplicationController
   def create
     Rails.logger.info('!!!!! create')   	
     Rails.logger.info(params)   	
-    params[:req_purchase][:last_user_id] = current_user.id
+    # params[:req_purchase][:last_user_id] = current_user.id
     @req = ReqPurchase.new(req_params)
+    @req.set_last_user(current_user)
     if @req.save
       redirect_to @req
     else
@@ -39,11 +40,15 @@ class ReqPurchasesController < ApplicationController
   	# params['req_purchase'] = Hash.new
     # Rails.logger.info('!!!!! update')   	
     # Rails.logger.info(params)   	
-    params[:req_purchase][:last_user_id] = current_user.id    
+    # params[:req_purchase][:last_user_id] = current_user.id
+    @req = ReqPurchase.find(params[:id])
+    @req.set_last_user(current_user)
     action = params[:commit]
     Rails.logger.info('!!!!!'+action) if action
+    # Rails.logger.info(params.inspect)
+    params.inspect
     if action == 'save'
-      @req = ReqPurchase.find(params[:id])
+      # @req = ReqPurchase.find(params[:id])
       if @req.update_attributes(req_params)
         flash[:success] = 'req_updated_successfuly'
         redirect_to @req
@@ -51,7 +56,7 @@ class ReqPurchasesController < ApplicationController
         render 'edit'
       end
     else
-      @req = ReqPurchase.find(params[:id])
+      # @req = ReqPurchase.find(params[:id])
       @req.assign_attributes(req_params)
       if @req.send(action)
         flash[:success] = 'req_updated_successfuly'
@@ -65,7 +70,8 @@ class ReqPurchasesController < ApplicationController
   private
 
   def req_params
-    params.require(:req_purchase).permit(:name, :money, :last_user_id)
+    params.fetch(:req_purchase, Hash.new).permit(:name, :money, :last_user_id)
+    # params.require(:req_purchase).permit(:name, :money, :last_user_id)
   end     
 
   def not_assigned
