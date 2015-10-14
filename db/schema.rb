@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915201703) do
+ActiveRecord::Schema.define(version: 20151014000002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20150915201703) do
   add_index "histories", ["historyable_type", "historyable_id"], name: "index_histories_on_historyable_type_and_historyable_id", using: :btree
   add_index "histories", ["user_id"], name: "index_histories_on_user_id", using: :btree
 
+  create_table "inf_workgroup_members", force: :cascade do |t|
+    t.integer  "req_workgroup_id"
+    t.integer  "user_id"
+    t.boolean  "main",             default: false
+    t.string   "comment"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "inf_workgroup_members", ["req_workgroup_id"], name: "index_inf_workgroup_members_on_req_workgroup_id", using: :btree
+  add_index "inf_workgroup_members", ["user_id"], name: "index_inf_workgroup_members_on_user_id", using: :btree
+
   create_table "req_purchases", force: :cascade do |t|
     t.string   "state",        default: "new"
     t.integer  "last_user_id"
@@ -82,6 +94,18 @@ ActiveRecord::Schema.define(version: 20150915201703) do
   add_index "req_reassigns", ["new_manager_id"], name: "index_req_reassigns_on_new_manager_id", using: :btree
   add_index "req_reassigns", ["old_manager_id"], name: "index_req_reassigns_on_old_manager_id", using: :btree
 
+  create_table "req_workgroups", force: :cascade do |t|
+    t.string   "state",        default: "new"
+    t.integer  "last_user_id"
+    t.string   "name"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "money"
+    t.string   "description"
+  end
+
+  add_index "req_workgroups", ["last_user_id"], name: "index_req_workgroups_on_last_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -103,5 +127,7 @@ ActiveRecord::Schema.define(version: 20150915201703) do
 
   add_foreign_key "assignments", "users"
   add_foreign_key "histories", "users"
+  add_foreign_key "inf_workgroup_members", "req_workgroups"
+  add_foreign_key "inf_workgroup_members", "users"
   add_foreign_key "req_reassigns", "clients"
 end
