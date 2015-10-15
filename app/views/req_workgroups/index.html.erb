@@ -1,0 +1,73 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Список рабочих групп</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/">Главная</a>
+        </li>
+        <li class="active">
+          <strong>Рабочие группы</strong>
+        </li>
+      </ol>    
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                  <h5>Открытые рабочие группы</h5>
+                  <div class="ibox-tools">
+                      <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                      </a>
+                      <a class="close-link">
+                          <i class="fa fa-times"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                <div class="form-group">
+                  <%= link_to t(:new_req), new_req_workgroup_path, class: "btn btn-primary"%>
+                </div>
+                  <div class="table-responsive">
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th><%= ReqWorkgroup.human_attribute_name("id") %></th>
+                              <th><%= ReqWorkgroup.human_attribute_name("state") %></th>
+                              <th><%= t(:curr_user) %></th>
+                              <th><%= ReqWorkgroup.human_attribute_name("name") %></th>
+                              <th><%= ReqWorkgroup.human_attribute_name("description") %></th>         
+                              <th><%= ReqWorkgroup.human_attribute_name("money") %></th>         
+                              <th><%= ReqWorkgroup.human_attribute_name("last_user_id") %></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @reqs.each do |req| %>
+                              <tr>
+                                <td>
+                                  <% if req.is_assigned?(current_user) %>
+                                    <a href="<%= edit_req_workgroup_path(req) %>" class="icon-block"><i class="fa fa-edit fa-2x"></i></a>
+                                  <% end %>   
+                                </td>
+                                <td><%= link_to req.id, req %></td>
+                                <td><%= req.state %></td>
+                                <td><%= req.opened_assignment_users %></td>
+                                <td><%= req.name %></td>
+                                <td><%= req.description %></td>
+                                <td style="text-align: right"><%= number_to_currency(req.money, locale: :ru) %></td>
+                                <td><%= req.last_user.name unless req.last_user.nil?%></td>
+                              </tr>
+                            <% end %>                          
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

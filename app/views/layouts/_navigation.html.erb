@@ -43,7 +43,12 @@
                 <%= link_to "/req_reassigns" do %>
                 <i class="fa fa-user"></i> <span class="nav-label">Заявки на перезакрепление</span>
                 <% end %>
-            </li> 
+            </li>
+            <li class="<%= 'active' if is_active_controller?('req_workgroups') %>">
+                <%= link_to "/req_workgroups" do %>
+                <i class="fa fa-user"></i> <span class="nav-label">Рабочие группы</span>
+                <% end %>
+            </li>  
         </ul>
     </div>
 </nav>

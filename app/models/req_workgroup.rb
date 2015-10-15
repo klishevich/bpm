@@ -11,7 +11,7 @@ class ReqWorkgroup < ActiveRecord::Base
 
   state_machine :initial => :new do
     # before_transition :new => :active, :do => :create_assignment
-    before_transition :active => :closed, :do => :close_assignment
+    before_transition :active => :closed, :do => :close_myassignment
     after_transition any => any, :do => :write_history
 
     event :initiate do
@@ -32,12 +32,12 @@ class ReqWorkgroup < ActiveRecord::Base
     @disabled["new"]["name"] = false
     @disabled["new"]["money"] = false    
     @disabled["new"]["description"] = false    
-    @disabled["active"]["name"] = false
+    # @disabled["active"]["name"] = false
     @disabled["active"]["money"] = false    
     @disabled["active"]["description"] = false     
   end  
 
-  def close_assignment
+  def close_myassignment
     Rails.logger.info('!!!!! close_assignment')  
     close_assignment(self.last_user_id)
   end

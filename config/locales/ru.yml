@@ -277,6 +277,13 @@ ru:
           name: "Закупка"
           money: "Стоимость"
           last_user_id: "Последний пользователь"
+        req_workgroup:
+          id: "Номер"
+          state: "Статус"
+          name: "Рабочая группа"
+          description: "Описание рабочей группы"
+          money: "Стоимость"
+          last_user_id: "Последний пользователь"
         assignment:
           id: "Номер задачи"
           user_id: "Исполнитель"
