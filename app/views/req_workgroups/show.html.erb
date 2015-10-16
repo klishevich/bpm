@@ -48,12 +48,42 @@
                         <div class="form-group">
                           <label><%= ReqWorkgroup.human_attribute_name("money") %></label>
                           <p><%= number_to_currency(@req.money, locale: :ru) %></p>
-                        </div> 
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <h3>Список членов рабочей группы</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th><%= InfWorkgroupMember.human_attribute_name("id") %></th>
+                                    <th><%= InfWorkgroupMember.human_attribute_name("user_id") %></th>
+                                    <th><%= InfWorkgroupMember.human_attribute_name("main") %></th>
+                                    <th><%= InfWorkgroupMember.human_attribute_name("comment") %></th>
+                                    <th><%= InfWorkgroupMember.human_attribute_name("updated_at") %></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% @req.inf_workgroup_members.each_with_index do |member, index| %>
+                                    <tr>
+                                      <td><%= index + 1 %></td>
+                                      <td><%= member.user.name %></td>
+                                      <td>
+                                        <% if member.main %>
+                                          <a href="#"><i class="fa fa-check text-navy"></i></a>
+                                        <% end %>
+                                      </td>
+                                      <td><%= member.comment %></td>
+                                      <td><%= member.updated_at.strftime('%d.%m.%Y %T') %></td>
+                                    </tr>
+                                  <% end %>                          
+                                </tbody>
+                            </table>
+                        </div>    
                         <% if @req.is_assigned?(current_user) %>
                           <div class="form-group">
                             <%= link_to 'Редактировать', edit_req_workgroup_path(@req), class: "btn btn-primary" %>
                           </div> 
-                        <% end %>           
+                        <% end %>   
                       </div>
                   </div>
                   <%= render 'shared/history_tab' %>

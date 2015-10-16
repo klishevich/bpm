@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <%= f.input :user_id, collection: User.order(:name).all, label_method: :name, value_method: :id%>
+  <%= f.input :main, as: :boolean %>
+  <%= f.input :comment %>
+  <%= link_to_remove_association "удалить члена", f %>
+</div>

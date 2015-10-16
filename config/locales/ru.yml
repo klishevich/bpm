@@ -284,6 +284,13 @@ ru:
           description: "Описание рабочей группы"
           money: "Стоимость"
           last_user_id: "Последний пользователь"
+        inf_workgroup_member:
+          id: "Номер"
+          req_workgroup_id: "Номер рабочей группы"
+          user_id: "ФИО участника"
+          main: "Признак руководителя"
+          comment: "Комментарий"
+          updated_at: "Дата последнего изменения" 
         assignment:
           id: "Номер задачи"
           user_id: "Исполнитель"

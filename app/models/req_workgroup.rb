@@ -7,7 +7,8 @@ class ReqWorkgroup < ActiveRecord::Base
   belongs_to :last_user, class_name: "User"
   has_many :history, as: :historyable
 
-  has_many :inf_workgroup_members
+  has_many :inf_workgroup_members, dependent: :destroy
+  accepts_nested_attributes_for :inf_workgroup_members, reject_if: :all_blank, allow_destroy: true
 
   state_machine :initial => :new do
     # before_transition :new => :active, :do => :create_assignment

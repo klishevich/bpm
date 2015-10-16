@@ -55,7 +55,8 @@ class ReqWorkgroupsController < ApplicationController
   private
 
   def req_params
-    params.require(:req_workgroup).permit(:name, :money, :description)
+    params.require(:req_workgroup).permit(:name, :money, :description, 
+      inf_workgroup_members_attributes: [:id, :user_id, :main, :comment, :_destroy])
   end     
 
   def not_assigned

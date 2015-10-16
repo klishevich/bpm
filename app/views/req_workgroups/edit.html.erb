@@ -33,6 +33,15 @@
                   <%= f.input :name, disabled: @req.is_disabled?("name") %>
                   <%= f.input :description, disabled: @req.is_disabled?("description") %>
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
+                  <div class="hr-line-dashed"></div>
+                  <h3>Члены рабочей группы</h3>
+                  <%= f.simple_fields_for :inf_workgroup_members do |p| %>
+                    <%= render 'inf_workgroup_member_fields', f: p %>
+                    <div class="links">
+                      <%= link_to_add_association 'добавить члена', f, :inf_workgroup_members %>
+                    </div>
+                    <br/>
+                  <% end %>
                   <div class="form-group">
                     <%= link_to "Отмена", @req, class: "btn btn-white"%>
                     <%= f.submit :save, class: "btn btn-primary"%>
