@@ -35,13 +35,28 @@
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
                   <div class="hr-line-dashed"></div>
                   <h3>Члены рабочей группы</h3>
+                  <div class="row rheader">
+                    <div class="col-lg-2">
+                      <b>Операции</b>
+                    </div>
+                    <div class="col-lg-3">
+                      <b><%= InfWorkgroupMember.human_attribute_name("user_id") %></b>
+                    </div>
+                    <div class="col-lg-3">
+                      <b>Признак руководителя РГ</b>
+                    </div>
+                    <div class="col-lg-4">
+                      <b><%= InfWorkgroupMember.human_attribute_name("comment") %></b>
+                    </div>
+                  </div>
                   <%= f.simple_fields_for :inf_workgroup_members do |p| %>
                     <%= render 'inf_workgroup_member_fields', f: p %>
-                    <div class="links">
-                      <%= link_to_add_association 'добавить члена', f, :inf_workgroup_members %>
-                    </div>
-                    <br/>
                   <% end %>
+                   <div class="links">
+                    <%= link_to_add_association 'Добавить члена рабочей группы', f, :inf_workgroup_members, class: "btn btn-primary" %>
+                  </div>
+                  <br/>
+                  <div class="hr-line-dashed"></div>
                   <div class="form-group">
                     <%= link_to "Отмена", @req, class: "btn btn-white"%>
                     <%= f.submit :save, class: "btn btn-primary"%>

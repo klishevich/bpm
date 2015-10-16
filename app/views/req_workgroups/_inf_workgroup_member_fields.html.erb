@@ -1,6 +1,15 @@
-<div class="nested-fields">
-  <%= f.input :user_id, collection: User.order(:name).all, label_method: :name, value_method: :id%>
-  <%= f.input :main, as: :boolean %>
-  <%= f.input :comment %>
-  <%= link_to_remove_association "удалить члена", f %>
+<div class="nested-fields row">
+  <div class="col-lg-2">
+    <%= link_to_remove_association "Удалить", f, class: "btn btn-warning" %>
+  </div>
+  <div class="col-lg-3">
+    <%= f.input :user_id, collection: User.order(:name).all, label_method: :name, value_method: :id, label: false %>
+  </div>
+  <div class="col-lg-3">
+    <%= f.input :main, as: :boolean %>
+  </div>
+  <div class="col-lg-4">
+    <%= f.input :comment, label: false %>
+  </div>
+  <p></p>
 </div>

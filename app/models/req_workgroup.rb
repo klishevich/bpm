@@ -8,7 +8,8 @@ class ReqWorkgroup < ActiveRecord::Base
   has_many :history, as: :historyable
 
   has_many :inf_workgroup_members, dependent: :destroy
-  accepts_nested_attributes_for :inf_workgroup_members, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :inf_workgroup_members, allow_destroy: true,
+    reject_if: proc { |attributes| attributes['user_id'].blank? }
 
   state_machine :initial => :new do
     # before_transition :new => :active, :do => :create_assignment
