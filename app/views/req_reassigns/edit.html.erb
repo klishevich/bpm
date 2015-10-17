@@ -1,14 +1,4 @@
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h2>Редактировать заявку на перезакрепление</h2>
-      <ol class="breadcrumb">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/req_purchases">Заявки на перезакрепление</a></li>      
-        <li><%= link_to "Заявка #{@req.id}", @req %></li>          
-        <li class="active"><strong>Редактирование</strong></li>
-      </ol>    
-  </div>
-</div>
+<%= req_edit_header("Редактировать заявку на перезакрепление", "req_reassigns", "Заявки на перезакрепление", "Заявка") %>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
       <div class="col-lg-12">
@@ -36,13 +26,7 @@
                   <%= f.input :new_manager_id, collection: User.order(:name).all, label_method: :name, value_method: :id, disabled: @req.is_disabled?("new_manager") %>
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
                   <%= f.input :info, disabled: @req.is_disabled?("info") %>
-                  <div class="form-group">
-                    <%= link_to "Отмена", @req, class: "btn btn-white"%>
-                    <%= f.submit :save, class: "btn btn-primary"%>
-                    <% @req.state_events.each do |x| %>
-                     <%= f.submit x, class: "btn btn-primary"%>
-                    <% end %>
-                  </div>
+                  <%= render 'shared/req_edit_buttons', f: f %>
                 <% end %>
               </div>
           </div>

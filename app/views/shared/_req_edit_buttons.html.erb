@@ -1,0 +1,7 @@
+  <div class="form-group">
+    <%= link_to "Отмена", @req, class: "btn btn-white"%>
+    <%= f.submit :save, class: "btn btn-primary"%>
+    <% @req.state_events.each do |x| %>
+     <%= f.submit x, class: "btn btn-primary"%>
+    <% end %>
+  </div>
