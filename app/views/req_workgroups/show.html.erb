@@ -6,7 +6,7 @@
           <a href="/">Главная</a>
         </li>
         <li>
-          <a href="/req_purchases">Рабочая группа</a>
+          <a href="/req_purchases">Рабочие группы</a>
         </li>        
         <li class="active">
           <strong><%= "Рабочая группа #{@req.id}" %></strong>
@@ -63,6 +63,9 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                  <% if @req.inf_workgroup_members.count == 0 %>
+                                    <tr><td></td><td>Нет ни одного члена рабочей группы</td><td></td><td></td><td></td></tr>
+                                  <% end %>
                                   <% @req.inf_workgroup_members.each_with_index do |member, index| %>
                                     <tr>
                                       <td><%= index + 1 %></td>
@@ -78,7 +81,7 @@
                                   <% end %>                          
                                 </tbody>
                             </table>
-                        </div>    
+                        </div>
                         <% if @req.is_assigned?(current_user) %>
                           <div class="form-group">
                             <%= link_to 'Редактировать', edit_req_workgroup_path(@req), class: "btn btn-primary" %>

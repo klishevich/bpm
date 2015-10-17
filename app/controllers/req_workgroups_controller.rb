@@ -32,23 +32,20 @@ class ReqWorkgroupsController < ApplicationController
   def update
     @req = ReqWorkgroup.find(params[:id])
     @req.set_last_user(current_user)
-    action = params[:commit]
-    Rails.logger.info('!!!!!'+action) if action
-    if action == 'save'
-      if @req.update_attributes(req_params)
-        flash[:success] = 'req_updated_successfuly'
-        redirect_to @req
-      else
-        render 'edit'
-      end
+    leader_count = params["req_workgroup"]["inf_workgroup_members_attributes"].select.count {|k,v| v["main"]=="1" && v["_destroy"]=="false"}
+    Rails.logger.info('!!!!! leader_count '+ leader_count.to_s) 
+    @req.assign_attributes(req_params)
+    if (leader_count > 1)
+      flash.now[:warning] = t(:should_be_only_one_leader)
+      render 'edit'
     else
-      @req.assign_attributes(req_params)
+      action = params[:commit]
       if @req.send(action)
-        flash[:success] = 'req_updated_successfuly'
+        flash[:success] = t(:req_updated_successfuly)
         redirect_to @req
       else
         render 'edit'
-      end      
+      end 
     end
   end  
 

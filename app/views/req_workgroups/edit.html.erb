@@ -1,15 +1,4 @@
 <%= req_edit_header("Редактировать рабочую группу", "req_workgroups", "Рабочие группы", "Рабочая группа") %>
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h2>Редактировать рабочую группу</h2>
-      <ol class="breadcrumb">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/req_purchases">Рабочие группы</a></li>      
-        <li><%= link_to "Рабочая группа #{@req.id}", @req %></li>          
-        <li class="active"><strong>Редактирование</strong></li>
-      </ol>    
-  </div>
-</div>
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
       <div class="col-lg-12">
@@ -35,7 +24,7 @@
                   <%= f.input :description, disabled: @req.is_disabled?("description") %>
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
                   <div class="hr-line-dashed"></div>
-                  <h3>Члены рабочей группы</h3>
+                  <h3 id="req_workgroup_errors">Члены рабочей группы</h3>
                   <div class="row rheader">
                     <div class="col-lg-2">
                       <b>Операции</b>
