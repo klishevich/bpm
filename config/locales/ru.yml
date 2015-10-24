@@ -278,6 +278,7 @@ ru:
           name: "Закупка"
           money: "Стоимость"
           last_user_id: "Последний пользователь"
+          myfile: "Файл"
         req_workgroup:
           id: "Номер"
           state: "Статус"

@@ -70,7 +70,7 @@ class ReqPurchasesController < ApplicationController
   private
 
   def req_params
-    params.fetch(:req_purchase, Hash.new).permit(:name, :money, :last_user_id)
+    params.fetch(:req_purchase, Hash.new).permit(:name, :money, :last_user_id, :myfile)
     # params.require(:req_purchase).permit(:name, :money, :last_user_id)
   end     
 

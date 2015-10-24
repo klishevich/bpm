@@ -7,6 +7,9 @@ class ReqPurchase < ActiveRecord::Base
   validates :name, presence: true
   belongs_to :last_user, class_name: "User"
   has_many :history, as: :historyable
+  has_attached_file :myfile
+  validates_attachment :myfile, content_type: { content_type: "application/msword" } 
+
 
   state_machine :initial => :new do
     before_transition :new => :wait_approval, :do => :create_assignments

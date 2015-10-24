@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014000002) do
+ActiveRecord::Schema.define(version: 20151024191511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,12 +65,16 @@ ActiveRecord::Schema.define(version: 20151014000002) do
   add_index "inf_workgroup_members", ["user_id"], name: "index_inf_workgroup_members_on_user_id", using: :btree
 
   create_table "req_purchases", force: :cascade do |t|
-    t.string   "state",        default: "new"
+    t.string   "state",               default: "new"
     t.integer  "last_user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "name"
     t.integer  "money"
+    t.string   "myfile_file_name"
+    t.string   "myfile_content_type"
+    t.integer  "myfile_file_size"
+    t.datetime "myfile_updated_at"
   end
 
   add_index "req_purchases", ["last_user_id"], name: "index_req_purchases_on_last_user_id", using: :btree

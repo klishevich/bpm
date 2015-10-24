@@ -24,6 +24,10 @@
           <%= f.input :name %>
           <%= f.input :money %>
           <div class="form-group">
+            <label for="req_purchase_myfile"><%= ReqPurchase.human_attribute_name("myfile") %></label>
+            <%= f.file_field :myfile %>
+          </div>
+          <div class="form-group">
             <%= link_to "Отмена", @req, class: "btn btn-white"%>
             <%= f.submit :save, class: "btn btn-primary"%>
           </div>
