@@ -25,7 +25,8 @@ gem 'devise'
 gem 'factory_girl_rails', '~> 4.5'
 gem 'capybara'
 gem "cocoon"
-gem "paperclip", "~> 4.3"
+# gem "paperclip", "~> 4.3"
+gem 'carrierwave'
 
 group :development, :test do
 end

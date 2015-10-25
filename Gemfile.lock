@@ -68,10 +68,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.7)
-      climate_control (>= 0.0.3, < 1.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     cocoon (1.2.6)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -118,7 +119,6 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.5)
-    mimemagic (0.3.0)
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
@@ -128,12 +128,6 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
-    paperclip (4.3.1)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (= 0.3.0)
     pg (0.18.2)
     rack (1.6.1)
     rack-test (0.6.3)
@@ -254,6 +248,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
   capybara
+  carrierwave
   cocoon
   coffee-rails (~> 4.1.0)
   database_cleaner
@@ -262,7 +257,6 @@ DEPENDENCIES
   font-awesome-rails (= 4.3.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip (~> 4.3)
   pg
   rails (= 4.2.1)
   rails-i18n (~> 4.0.0)

@@ -22,7 +22,7 @@
                   <%= f.input :state, disabled: true %>
                   <%= f.input :name, disabled: @req.is_disabled?("name") %>
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
-                  <%= render 'edit_file', f: f %>
+                  <%= render 'edit_myfile', f: f %>
                   <%= render 'shared/req_edit_buttons', f: f %>
                 <% end %>
               </div>

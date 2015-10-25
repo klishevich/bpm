@@ -23,7 +23,7 @@
           <%= simple_form_for(@req) do |f| %>
           <%= f.input :name %>
           <%= f.input :money %>
-          <%= render 'edit_file' %>
+          <%= render 'edit_myfile', f: f %>
           <div class="form-group">
             <%= link_to "Отмена", @req, class: "btn btn-white"%>
             <%= f.submit :save, class: "btn btn-primary"%>

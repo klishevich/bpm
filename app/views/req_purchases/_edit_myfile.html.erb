@@ -1,0 +1,20 @@
+<% myfile_has_errors = @req.errors[:myfile].present? %>
+<% err_class_form_group = myfile_has_errors ? "has-error".html_safe : "".html_safe %>
+<% err_class_label = myfile_has_errors ? "error".html_safe : "".html_safe %>
+<div class="form-group optional req_purchase_myfile <%= err_class_form_group %>">	
+  <label class="optional <%= err_class_label %>" for="req_purchase_myfile"><%= ReqPurchase.human_attribute_name("myfile") %></label>
+  <br/>
+  <% if @req.myfile? %>
+    <% #link_to(@req.myfile_url.rpartition('/').last, @req.myfile.url)%>
+    <%= link_to(@req.myfile_identifier, @req.myfile.url)%>
+    <br/>
+    <%= f.check_box :remove_myfile %>
+    <label class="string optional checkbox inline" for="req_purchase_remove_myfile" style="font-weight: initial;">Удалить файл</label>
+  <% end %>
+  <%= f.file_field :myfile %>
+  <%= f.hidden_field :myfile_cache %>
+  <% if myfile_has_errors %>
+    <span class="help-block"><%= @req.errors[:myfile].first %></span>
+  <% end %>
+</div>
+<%# f.input :myfile, disabled: @req.is_disabled?("name")  %>

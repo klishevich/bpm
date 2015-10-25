@@ -50,7 +50,7 @@ class ReqPurchasesController < ApplicationController
     if action == 'save'
       # @req = ReqPurchase.find(params[:id])
       if @req.update_attributes(req_params)
-        flash[:success] = 'req_updated_successfuly'
+        flash[:success] = t(:req_updated_successfuly)
         redirect_to @req
       else
         render 'edit'
@@ -59,7 +59,7 @@ class ReqPurchasesController < ApplicationController
       # @req = ReqPurchase.find(params[:id])
       @req.assign_attributes(req_params)
       if @req.send(action)
-        flash[:success] = 'req_updated_successfuly'
+        flash[:success] = t(:req_updated_successfuly)
         redirect_to @req
       else
         render 'edit'
@@ -70,7 +70,8 @@ class ReqPurchasesController < ApplicationController
   private
 
   def req_params
-    params.fetch(:req_purchase, Hash.new).permit(:name, :money, :last_user_id, :myfile)
+    params.fetch(:req_purchase, Hash.new).permit(:name, :money, :last_user_id, :myfile, 
+      :myfile_cache, :remove_myfile)
     # params.require(:req_purchase).permit(:name, :money, :last_user_id)
   end     
 
