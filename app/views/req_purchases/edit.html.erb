@@ -22,11 +22,7 @@
                   <%= f.input :state, disabled: true %>
                   <%= f.input :name, disabled: @req.is_disabled?("name") %>
                   <%= f.input :money, disabled: @req.is_disabled?("money") %>
-                  <div class="form-group">
-                    <label for="req_purchase_myfile"><%= ReqPurchase.human_attribute_name("myfile") %></label>
-                    <p><%= link_to @req.myfile_file_name, @req.myfile.url %></p>
-                    <%= f.file_field :myfile %>
-                  </div>
+                  <%= render 'edit_file', f: f %>
                   <%= render 'shared/req_edit_buttons', f: f %>
                 <% end %>
               </div>

@@ -7,7 +7,7 @@ class ReqPurchase < ActiveRecord::Base
   validates :name, presence: true
   belongs_to :last_user, class_name: "User"
   has_many :history, as: :historyable
-  has_attached_file :myfile
+  has_attached_file :myfile, default_url: "/"
   validates_attachment :myfile, content_type: { content_type: "application/msword" } 
 
 

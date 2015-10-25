@@ -1,0 +1,7 @@
+<div class="form-group">
+  <label for="req_purchase_myfile"><%= ReqPurchase.human_attribute_name("myfile") %></label>
+  <% if !@req.myfile_file_name.blank? %>
+    <p><%= link_to @req.myfile_file_name, @req.myfile.url %></p>
+  <% end %>
+  <%= f.file_field :myfile %>
+</div>

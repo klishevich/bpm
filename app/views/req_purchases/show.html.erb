@@ -47,7 +47,11 @@
                         </div>                         
                         <div class="form-group">
                           <label><%= ReqPurchase.human_attribute_name("myfile") %></label>
-                          <p><%= link_to @req.myfile_file_name, @req.myfile.url %></p>
+                          <% if @req.myfile_file_name.blank? %>
+                            <p>Нет файла</p>
+                          <% else %>
+                            <p><%= link_to @req.myfile_file_name, @req.myfile.url %></p>
+                          <% end %>
                         </div>
                         <% if @req.is_assigned?(current_user) %>
                           <div class="form-group">
