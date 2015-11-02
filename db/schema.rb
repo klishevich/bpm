@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025132756) do
+ActiveRecord::Schema.define(version: 20151102195901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,19 @@ ActiveRecord::Schema.define(version: 20151025132756) do
 
   add_index "req_workgroups", ["last_user_id"], name: "index_req_workgroups_on_last_user_id", using: :btree
 
+  create_table "units", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "level"
+    t.integer  "parent_id"
+    t.integer  "manager_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "units", ["manager_id"], name: "index_units_on_manager_id", using: :btree
+  add_index "units", ["parent_id"], name: "index_units_on_parent_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -131,4 +144,6 @@ ActiveRecord::Schema.define(version: 20151025132756) do
   add_foreign_key "inf_workgroup_members", "req_workgroups"
   add_foreign_key "inf_workgroup_members", "users"
   add_foreign_key "req_reassigns", "clients"
+  add_foreign_key "units", "units", column: "parent_id"
+  add_foreign_key "units", "users", column: "manager_id"
 end
