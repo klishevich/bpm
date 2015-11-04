@@ -1,0 +1,22 @@
+email;password;password_confirmation;name;code;unit_code
+manager1@test.co;testtest;testtest;Менеджер Один;m1;krasn_sales
+manager2@test.co;testtest;testtest;Менеджер Два;m2;novosib_sales
+manager22@test.co;testtest;testtest;Менеджер Двадцать Два;m22;novosib_sales
+chief1@test.co;testtest;testtest;Шеф Один;maks;krasn
+chief2@test.co;testtest;testtest;Шеф Два;alex;novosib
+ceo@test.co;testtest;testtest;Директор;mike;center
+admin@test.co;testtest;testtest;Админ;petr;center_dev
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;

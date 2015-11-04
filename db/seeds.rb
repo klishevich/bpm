@@ -29,6 +29,10 @@ ReqWorkgroup.delete_all
 puts 'Delete Clients'
 Client.delete_all
 
+connection = ActiveRecord::Base.connection()
+puts 'Update units delete manager values'
+connection.execute("update units set manager_id = null")
+
 puts 'Delete Users'
 User.delete_all
 
@@ -41,22 +45,29 @@ CSV.foreach("db/import/OgrStructureImport.csv", { encoding: "UTF-8", headers: tr
   Unit.create(row.to_hash) if !row.field(1).blank?
 end
 
-connection = ActiveRecord::Base.connection()
+puts 'Users Creation'
+CSV.foreach("db/import/UsersImport.csv", { encoding: "UTF-8", headers: true, 
+	header_converters: :symbol, converters: :all, :col_sep => ";" }) do |row|
+  User.create(row.to_hash) if !row.field(1).blank?
+end
+
+puts 'Update parent unit'
 connection.execute("update units as u 
 					set parent_id = parent.id
 					from units as parent 
 					where u.parent_code = parent.code")
 
-puts 'Users Creation'
-User.create([
-	{ email: "manager1@test.co", password:"testtest", password_confirmation:"testtest", name: "Менеджер Один"},
-	{ email: "manager2@test.co", password:"testtest", password_confirmation:"testtest", name: "Менеджер Два"},
-	{ email: "manager22@test.co", password:"testtest", password_confirmation:"testtest", name: "Менеджер Двадцать Два"},
-	{ email: "chief1@test.co", password:"testtest", password_confirmation:"testtest", name: "Шеф Один"},
-	{ email: "chief2@test.co", password:"testtest", password_confirmation:"testtest", name: "Шеф Два"},
-	{ email: "ceo@test.co", password:"testtest", password_confirmation:"testtest", name: "Директор"},
-	{ email: "admin@test.co", password:"testtest", password_confirmation:"testtest", name: "Админ"}
-])
+puts 'Update unit manager'
+connection.execute("update units as u
+					set manager_id = us.id
+					from users as us
+					where us.code = u.manager_code")
+
+puts 'Update user department (unit)'
+connection.execute("update users as us
+					set unit_id = u.id
+					from units as u
+					where us.unit_code = u.code")
 
 user1 = User.where(email: "manager1@test.co").first
 user2 = User.where(email: "manager2@test.co").first

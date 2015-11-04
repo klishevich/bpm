@@ -15,3 +15,7 @@ CSV.foreach("db/import/OgrStructureImport.csv", { encoding: "UTF-8", headers: tr
 end
 ```
 
+## Загрузка пользователей
+
+Производится аналогично загрузке оргструктуры, формат файла для загрузки - [UsersImport.csv](https://raw.githubusercontent.com/klishevich/bpm/master/db/import/UsersImport.csv).
+

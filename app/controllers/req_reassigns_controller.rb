@@ -44,7 +44,7 @@ class ReqReassignsController < ApplicationController
     if action == 'save'
       # @req = ReqReassign.find(params[:id])
       if @req.update_attributes(req_params)
-        flash[:success] = 'req_updated_successfuly'
+        flash[:success] = t(:req_updated_successfuly)
         redirect_to @req
       else
         render 'edit'
@@ -53,7 +53,7 @@ class ReqReassignsController < ApplicationController
       # @req = ReqReassign.find(params[:id])
       @req.assign_attributes(req_params)
       if @req.send(action)
-        flash[:success] = 'req_updated_successfuly'
+        flash[:success] = t(:req_updated_successfuly)
         redirect_to @req
       else
         render 'edit'
