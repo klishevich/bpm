@@ -41,6 +41,12 @@ CSV.foreach("db/import/OgrStructureImport.csv", { encoding: "UTF-8", headers: tr
   Unit.create(row.to_hash) if !row.field(1).blank?
 end
 
+connection = ActiveRecord::Base.connection()
+connection.execute("update units as u 
+					set parent_id = parent.id
+					from units as parent 
+					where u.parent_code = parent.code")
+
 puts 'Users Creation'
 User.create([
 	{ email: "manager1@test.co", password:"testtest", password_confirmation:"testtest", name: "Менеджер Один"},
