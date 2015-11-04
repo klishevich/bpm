@@ -110,11 +110,14 @@ ActiveRecord::Schema.define(version: 20151102195901) do
   create_table "units", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
+    t.string   "parent_code"
+    t.string   "manager_code"
     t.integer  "level"
     t.integer  "parent_id"
     t.integer  "manager_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "deleted",      default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "units", ["manager_id"], name: "index_units_on_manager_id", using: :btree

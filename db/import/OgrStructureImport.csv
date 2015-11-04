@@ -1,0 +1,17 @@
+name;code;parent_code;manager_code
+Центральный офис;center;;mike
+Бухгалтерия;center_buh;center;john
+Финансовая служба;center_fin;center;mike
+Служба безопасности;center_safe;center;leo
+Отдел разработки;center_dev;center;petr
+Отдел продаж;center_sales;center;ilia
+Филиал Красноярский;krasn;center;maks
+Отдел разработки;krasn_dev;krasn;maks
+Отдел продаж;krasn_sales;krasn;maks
+Филиал Новосибирский;novosib;center;alex
+Отдел разработки;novosib_dev;novosib;alex
+Отдел продаж;novosib_sales;novosib;alex
+Представительство в Кемерово;kemerovo;novosib;ivan
+Отдел продаж;kemerovo_sales;kemerovo;ivan
+;;;
+;;;

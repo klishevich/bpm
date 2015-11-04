@@ -6,6 +6,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+
 puts 'Delete History'
 History.delete_all
 
@@ -18,11 +20,26 @@ ReqReassign.delete_all
 puts 'Delete ReqPurchases'
 ReqPurchase.delete_all
 
+puts 'Delete WorkgroupMembers'
+InfWorkgroupMember.delete_all
+
+puts 'Delete ReqWorkgroups'
+ReqWorkgroup.delete_all
+
 puts 'Delete Clients'
 Client.delete_all
 
 puts 'Delete Users'
 User.delete_all
+
+puts 'Delete Units'
+Unit.delete_all
+
+puts 'Units Creation'
+CSV.foreach("db/import/OgrStructureImport.csv", { encoding: "UTF-8", headers: true, 
+	header_converters: :symbol, converters: :all, :col_sep => ";" }) do |row|
+  Unit.create(row.to_hash) if !row.field(1).blank?
+end
 
 puts 'Users Creation'
 User.create([
