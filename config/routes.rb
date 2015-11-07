@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
 
   devise_for :users
+  resources :users
   # get 'req_reassigns/index'
 
   # get 'req_reassigns/new'

@@ -1,0 +1,45 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+      <h2>Редактировать пользователя</h2>
+        <ol class="breadcrumb">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/users">Пользователи</a></li>      
+          <li><%= "Пользователь #{@user.id}" %></li>          
+          <li class="active"><strong>Редактирование</strong></li>
+        </ol>    
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <h5>Редактирование пользователя</h5>
+                  <div class="ibox-tools">
+                      <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                      </a>
+                      <a class="close-link">
+                          <i class="fa fa-times"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                <%= simple_form_for(@user) do |f| %>
+                  <%= f.input :id, disabled: true %>
+                  <%= f.input :name %>
+                  <%= f.input :email, disabled: true %>
+                  <%= f.input :code %>
+                  <%= f.input :unit_id, collection: Unit.order(:name).all, label_method: :name, value_method: :id %>
+                  <%= f.input :deleted %>
+                  <%= f.input :admin %>
+                  <div class="form-group">
+                    <%= link_to "Отмена", users_path, class: "btn btn-white"%>
+                    <%= f.submit :save, class: "btn btn-primary"%>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Список пользователей</h2>
+      <ol class="breadcrumb">
+        <li>
+          <a href="/">Главная</a>
+        </li>
+        <li class="active">
+          <strong>Пользователи</strong>
+        </li>
+      </ol>    
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                  <h5>Список пользователей</h5>
+                  <div class="ibox-tools">
+                      <a class="collapse-link">
+                          <i class="fa fa-chevron-up"></i>
+                      </a>
+                      <a class="close-link">
+                          <i class="fa fa-times"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="ibox-content">
+                <div class="form-group">
+                  <%= link_to 'Тут кнопка добавления нового пользователя', '#', class: "btn btn-primary"%>
+                </div>
+                  <div class="table-responsive">
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th><%= User.human_attribute_name("id") %></th>
+                              <th><%= User.human_attribute_name("name") %></th>
+                              <th><%= User.human_attribute_name("email") %></th>
+                              <th><%= User.human_attribute_name("code") %></th>
+                              <th><%= User.human_attribute_name("unit_id") %></th>
+                              <th><%= User.human_attribute_name("deleted") %></th>
+                              <th><%= User.human_attribute_name("admin") %></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% @users.each do |user| %>
+                              <tr>
+                                <td>
+                                  <a href="<%= edit_user_path(user) %>" class="icon-block"><i class="fa fa-edit fa-2x"></i></a>
+                                </td>
+                                <td><%= user.id %></td>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.code %></td>
+                                <td><%= user.unit.name %></td>
+                                <td>
+                                  <% if user.deleted == true %>
+                                    <a href="#"><i class="fa fa-check text-navy"></i></a>
+                                  <% end %>
+                                </td>
+                                <td>
+                                  <% if user.admin == true %>
+                                    <a href="#"><i class="fa fa-check text-navy"></i></a>
+                                  <% end %>
+                                </td>
+                              </tr>
+                            <% end %>                          
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

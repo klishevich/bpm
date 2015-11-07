@@ -29,6 +29,14 @@
                 <i class="fa fa-home"></i> <span class="nav-label">Главная</span>
                 <% end %>
             </li>
+            <li class="<%= 'active' if is_active_controller?('users') %>">
+                <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Администрирование</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse <%= 'true' if is_active_controller?('users') %>">
+                    <li class="<%= 'active' if is_active_controller?('users') %>"><%= link_to "Пользователи", users_path %></li>
+                    <li ><%= link_to "Будут роли", '#' %></li>
+                    <li ><%= link_to "Еще что-то", '#' %></li>
+                </ul>
+            </li>
             <li class="<%= 'active' if current_page?('/assignments') %>">
                 <%= link_to "/assignments" do %>
                 <i class="fa fa-tasks"></i> <span class="nav-label">Мои задания</span>

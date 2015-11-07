@@ -27,6 +27,7 @@ gem 'capybara'
 gem "cocoon"
 # gem "paperclip", "~> 4.3"
 gem 'carrierwave'
+gem 'pundit'
 
 group :development, :test do
 end
