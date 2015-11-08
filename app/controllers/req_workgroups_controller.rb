@@ -1,5 +1,5 @@
 class ReqWorkgroupsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_filter :not_assigned, only: [:edit, :update]
 
   def index

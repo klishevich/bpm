@@ -321,3 +321,4 @@ ru:
     should_be_only_one_leader: "Должен быть только один руководитель рабочей группы"
     req_updated_successfuly: "Запись успешно обновлена"
     updated_successfuly: "Успешно обновлено"
+    not_authorized: "Не достаточно прав"
