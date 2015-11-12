@@ -33,6 +33,16 @@
                   <%= f.input :unit_id, collection: Unit.order(:name).all, label_method: :name, value_method: :id %>
                   <%= f.input :deleted %>
                   <%= f.input :admin %>
+                  <div class="hr-line-dashed"></div>
+                  <h3 id="req_workgroup_errors">Роли</h3>
+                  <%= f.simple_fields_for :users_roles do |p| %>
+                    <%= render 'users_role_fields', f: p %>
+                  <% end %>
+                  <div class="links">
+                    <%= link_to_add_association 'Добавить роль', f , :users_roles, class: "btn btn-primary" %>
+                  </div>
+                  <br/>
+                  <div class="hr-line-dashed"></div>
                   <div class="form-group">
                     <%= link_to "Отмена", users_path, class: "btn btn-white"%>
                     <%= f.submit :save, class: "btn btn-primary"%>

@@ -33,11 +33,26 @@ connection = ActiveRecord::Base.connection()
 puts 'Update units delete manager values'
 connection.execute("update units set manager_id = null")
 
+puts 'Delete UserRoles'
+connection.execute("delete from users_roles")
+
+puts 'Delete Roles'
+Role.delete_all
+
 puts 'Delete Users'
 User.delete_all
 
 puts 'Delete Units'
 Unit.delete_all
+
+puts 'Roles Creation'
+Role.create([
+  { name: "Клиентский менеджер", code: "client_manager"},
+  { name: "Руководитель клиентского отдела", code: "chief_client_manager"}
+])
+puts 'Create admin user: adm@test.co/testtest'
+User.create({ email: "adm@test.co", password:"testtest", password_confirmation:"testtest", 
+	name: "Реальный админ", admin: true})
 
 puts 'Units Creation'
 CSV.foreach("db/import/OgrStructureImport.csv", { encoding: "UTF-8", headers: true, 

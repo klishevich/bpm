@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.all.order('name')
     # authorize User
   end
 
@@ -38,7 +38,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :code, :unit_id, :deleted, :admin)
+    params.require(:user).permit(:name, :code, :unit_id, :deleted, :admin, 
+      users_roles_attributes: [:role_id, :user_id])
   end 
 
 end

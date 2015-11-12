@@ -39,7 +39,7 @@
                               <th><%= User.human_attribute_name("id") %></th>
                               <th><%= User.human_attribute_name("name") %></th>
                               <th><%= User.human_attribute_name("email") %></th>
-                              <th><%= User.human_attribute_name("code") %></th>
+                              <th>Роли пользователя</th>
                               <th><%= User.human_attribute_name("unit_id") %></th>
                               <th><%= User.human_attribute_name("deleted") %></th>
                               <th><%= User.human_attribute_name("admin") %></th>
@@ -54,8 +54,8 @@
                                 <td><%= user.id %></td>
                                 <td><%= user.name %></td>
                                 <td><%= user.email %></td>
-                                <td><%= user.code %></td>
-                                <td><%= user.unit.name %></td>
+                                <td><%= user.roles.map {|x| x.name }.join(', ') %></td>
+                                <td><%= user.unit.name if user.unit%></td>
                                 <td>
                                   <% if user.deleted == true %>
                                     <a href="#"><i class="fa fa-check text-navy"></i></a>

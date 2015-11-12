@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107195223) do
+ActiveRecord::Schema.define(version: 20151112193305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,13 @@ ActiveRecord::Schema.define(version: 20151107195223) do
 
   add_index "req_workgroups", ["last_user_id"], name: "index_req_workgroups_on_last_user_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
@@ -148,6 +155,16 @@ ActiveRecord::Schema.define(version: 20151107195223) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "users_roles", ["role_id"], name: "index_users_roles_on_role_id", using: :btree
+  add_index "users_roles", ["user_id"], name: "index_users_roles_on_user_id", using: :btree
+
   add_foreign_key "assignments", "users"
   add_foreign_key "histories", "users"
   add_foreign_key "inf_workgroup_members", "req_workgroups"
@@ -156,4 +173,6 @@ ActiveRecord::Schema.define(version: 20151107195223) do
   add_foreign_key "units", "units", column: "parent_id"
   add_foreign_key "units", "users", column: "manager_id"
   add_foreign_key "users", "units"
+  add_foreign_key "users_roles", "roles"
+  add_foreign_key "users_roles", "users"
 end
