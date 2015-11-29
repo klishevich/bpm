@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20151129000001) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unit_id"], name: "index_users_on_unit_id", using: :btree
 
-  create_table "users_roles", id: false, force: :cascade do |t|
+  create_table "users_roles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "role_id"
     t.datetime "created_at", null: false

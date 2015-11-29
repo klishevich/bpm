@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :code, :unit_id, :deleted, :admin, 
-      users_roles_attributes: [:role_id, :user_id])
+      users_roles_attributes: [:id, :role_id, :user_id, :_destroy])
   end 
 
 end
