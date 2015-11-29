@@ -146,6 +146,7 @@ ru:
         taken: уже существует
         validate_one_leader: у рабочей группы может быть только один руководитель
         extension_white_list_error: расширение файла должно быть pdf, doc или docx
+        validate_has_client_manager: необходимо указать клиентского менеджера
         too_long:
           few: слишком большой длины (не может быть больше чем %{count} символа)
           many: слишком большой длины (не может быть больше чем %{count} символов)
@@ -287,6 +288,12 @@ ru:
           last_user_id: "Последний пользователь"
           myfile: "Файл"
           remove_myfile: "Удалить файл"
+        req_rolepurchase:
+          id: "Номер"
+          state: "Статус"
+          name: "Закупка"
+          money: "Стоимость"
+          last_user_id: "Последний пользователь"
         req_workgroup:
           id: "Номер"
           state: "Статус"

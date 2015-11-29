@@ -58,7 +58,12 @@
                 <%= link_to "/req_workgroups" do %>
                 <i class="fa fa-users"></i> <span class="nav-label">Рабочие группы</span>
                 <% end %>
-            </li>  
+            </li>
+            <li class="<%= 'active' if is_active_controller?('req_rolepurchases') %>">
+                <%= link_to "/req_rolepurchases" do %>
+                <i class="fa fa-money"></i> <span class="nav-label">Закупка (с ролями)</span>
+                <% end %>
+            </li>   
         </ul>
     </div>
 </nav>

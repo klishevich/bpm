@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112193305) do
+ActiveRecord::Schema.define(version: 20151129000001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,17 @@ ActiveRecord::Schema.define(version: 20151112193305) do
   add_index "req_reassigns", ["last_user_id"], name: "index_req_reassigns_on_last_user_id", using: :btree
   add_index "req_reassigns", ["new_manager_id"], name: "index_req_reassigns_on_new_manager_id", using: :btree
   add_index "req_reassigns", ["old_manager_id"], name: "index_req_reassigns_on_old_manager_id", using: :btree
+
+  create_table "req_rolepurchases", force: :cascade do |t|
+    t.string   "state",        default: "new"
+    t.integer  "last_user_id"
+    t.string   "name"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "money"
+  end
+
+  add_index "req_rolepurchases", ["last_user_id"], name: "index_req_rolepurchases_on_last_user_id", using: :btree
 
   create_table "req_workgroups", force: :cascade do |t|
     t.string   "state",        default: "new"
