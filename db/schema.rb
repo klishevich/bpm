@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151129000001) do
+ActiveRecord::Schema.define(version: 20151214210051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,14 @@ ActiveRecord::Schema.define(version: 20151129000001) do
     t.integer  "assignable_id"
     t.string   "assignable_type"
     t.string   "description"
-    t.boolean  "closed",          default: false
+    t.boolean  "closed",             default: false
     t.string   "result"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.datetime "close_date"
+    t.datetime "first_notify_date"
+    t.datetime "deadline_date"
+    t.datetime "second_notify_date"
   end
 
   add_index "assignments", ["assignable_type", "assignable_id"], name: "index_assignments_on_assignable_type_and_assignable_id", using: :btree
