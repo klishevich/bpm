@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20151214210051) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.datetime "close_date"
-    t.datetime "first_notify_date"
     t.datetime "deadline_date"
-    t.datetime "second_notify_date"
+    t.datetime "notify_before_date"
+    t.datetime "notify_after_date"
   end
 
   add_index "assignments", ["assignable_type", "assignable_id"], name: "index_assignments_on_assignable_type_and_assignable_id", using: :btree

@@ -15,7 +15,7 @@ class ReqPurchase < ActiveRecord::Base
   # end 
 
   state_machine :initial => :new do
-    before_transition :new => :wait_approval, :do => :create_assignments
+    after_transition :new => :wait_approval, :do => :create_assignments
     after_transition :wait_approval => :approved, :do => :approve_assignment
     after_transition :wait_approval => :disapproved, :do => :disapprove_assignment
     after_transition any => any, :do => :write_history
@@ -40,13 +40,23 @@ class ReqPurchase < ActiveRecord::Base
   private
 
   def init
-    # self.last_user_id ||= User.where("email = ?", "admin@test.co").first.id
     self.state ||= 'new'
-    # set false to show field for state in edit form    
+    
+    # ----- SET EDITABLE FIELDS FOR STATE IN EDIT VIEW (editable if false) -----
     @disabled = Hash.new{|hash, key| hash[key] = Hash.new}
     @disabled["new"]["name"] = false
     @disabled["new"]["money"] = false    
-    # @disabled["wait_approval"]["money"] = false    
+    # @disabled["wait_approval"]["money"] = false 
+
+    # ------ SET SLA FOR PROCESS -------
+    # для SLA необходимо использовать after_transition, чтобы в настройке указывался целевой статус
+    @sla = Hash.new{|hash, key| hash[key] = Hash.new}
+    # days
+    @sla["wait_approval"]["deadline"] = 3
+    #hours
+    @sla["wait_approval"]["notify_before"] = 12
+    @sla["wait_approval"]["notify_after"] = 24
+
   end  
 
   def create_assignments

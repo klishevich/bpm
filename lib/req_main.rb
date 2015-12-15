@@ -35,14 +35,16 @@ module ReqMain
     Rails.logger.info('!!!!! close_assignment') 
     Rails.logger.info(user_id)
     current_assignment = self.assignments.where(closed: false, user_id: user_id).first
-    current_assignment.update_attributes(closed: true) if !current_assignment.nil?
+    current_assignment.update_attributes(closed: true, close_date: Time.now) if !current_assignment.nil?
   end
 
   def new_assignment(user_id)
     Rails.logger.info('!!!!! new_assignment') 
     opened_assignments = self.assignments.where(closed: false, user_id: user_id).count
     if opened_assignments == 0
-      new_assignment = self.assignments.create(user_id: user_id, description: self.name)  
+      new_assignment = self.assignments.create(user_id: user_id, description: self.name, 
+        deadline_date: sla_deadline_date, notify_before_date: sla_notify_before_date,
+        notify_after_date: sla_notify_after_date)  
     end         
   end
 
@@ -52,5 +54,35 @@ module ReqMain
     self.history.create(state: self.state, user_id: self.last_user_id, description: text, 
       new_values: 'TO DO')
   end
+
+  def sla_deadline_date
+    Rails.logger.info('!!!!! sla_deadline_date before if, days, state') 
+    if !@sla.nil?
+      days = @sla[self.state]["deadline"]
+      Rails.logger.info("#{days}, #{self.state}")
+      res = days.blank? ? nil : Time.now + (days*24*60*60)
+    end
+    res
+  end 
+
+  def sla_notify_before_date
+    Rails.logger.info('!!!!! sla_notify_before_date before if, hours') 
+    if !@sla.nil? && sla_deadline_date
+      hours = @sla[self.state]["notify_before"]
+      Rails.logger.info(hours)
+      res = hours.blank? ? nil : sla_deadline_date - (hours*60*60)
+    end
+    res
+  end
+
+  def sla_notify_after_date
+    Rails.logger.info('!!!!! sla_notify_after_date before if, hours') 
+    if !@sla.nil? && sla_deadline_date
+      hours = @sla[self.state]["notify_after"]
+      Rails.logger.info(hours)
+      res = hours.blank? ? nil : sla_deadline_date + (hours*60*60)
+    end
+    res
+  end 
 
 end
