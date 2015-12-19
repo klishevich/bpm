@@ -31,11 +31,11 @@ module ReqMain
     self.assignments.create(user_id: self.last_user_id, description: self.name)
   end
 
-  def close_assignment(user_id)
+  def close_assignment(user_id, result = 'ok')
     Rails.logger.info('!!!!! close_assignment') 
     Rails.logger.info(user_id)
     current_assignment = self.assignments.where(closed: false, user_id: user_id).first
-    current_assignment.update_attributes(closed: true, close_date: Time.now) if !current_assignment.nil?
+    current_assignment.update_attributes(closed: true, close_date: Time.now, result: result) if !current_assignment.nil?
   end
 
   def new_assignment(user_id)
@@ -84,5 +84,16 @@ module ReqMain
     end
     res
   end 
+
+  def has_opened_assignments?
+    Rails.logger.info('!!! has_opened_assignments') 
+    assignments = self.assignments.where(closed: false)
+    Rails.logger.info(assignments.count) 
+    if assignments.count > 0
+      true
+    else
+      false
+    end
+  end  
 
 end
