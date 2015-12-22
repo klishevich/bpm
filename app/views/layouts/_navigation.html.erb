@@ -39,6 +39,11 @@
                     </ul>
                 </li>
             <% end %>
+            <li class="<%= 'active' if is_active_controller?('reports') %>">
+                <%= link_to "/reports" do %>
+                <i class="fa fa-file-excel-o"></i> <span class="nav-label">Отчеты</span>
+                <% end %>
+            </li>
             <li class="<%= 'active' if current_page?('/assignments') %>">
                 <%= link_to "/assignments" do %>
                 <i class="fa fa-tasks"></i> <span class="nav-label">Мои задания</span>

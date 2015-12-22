@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'assignments' => 'assignments#index'
 
-  get 'static_pages/home'
+  get 'reports' => 'reports#index'
+  get 'reports/sla' => 'reports#sla'
 
   devise_for :users
   resources :users
