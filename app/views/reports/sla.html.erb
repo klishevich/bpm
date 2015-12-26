@@ -25,32 +25,67 @@
                       <a class="collapse-link">
                           <i class="fa fa-chevron-up"></i>
                       </a>
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                          <i class="fa fa-wrench"></i>
-                      </a>
-                      <ul class="dropdown-menu dropdown-user">
-                          <li>
-                              <a href="#">Config option 1</a>
-                          </li>
-                          <li>
-                              <a href="#">Config option 2</a>
-                          </li>
-                      </ul>
                       <a class="close-link">
                           <i class="fa fa-times"></i>
                       </a>
                   </div>
               </div>
               <div class="ibox-content">
+                <div class="d-search">
+                  <%= simple_form_for :report_sla, { url: '/reports/sla' } do |f| %>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <%= f.input :state_id, label: 'Статус', required: false, collection: [['Все', 'all'],['Закрытые','closed'],['Открытые', 'opened']], label_method: :first, value_method: :last %>
+                    </div>
+                    <div class="col-lg-4">
+                      <%= f.input :user_id, label: 'Пользователь', required: false, collection: User.order(:name).all, label_method: :name, value_method: :id %>
+                    </div>
+                    <div class="col-lg-4">
+                      <%= f.input :req_type, label: 'Тип заявки', required: false %>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <%= f.input :date_begin, label: 'Дата начала', required: false %>
+                    </div>
+                    <div class="col-lg-4">
+                      <%= f.input :date_end, label: 'Дата окончания', required: false %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit "Сформировать", class: "btn btn-primary"%>
+                  </div>
+                  <% end %>            
+                </div>
+              </div>
+          </div>
+          <div class="ibox float-e-margins">
+              <div class="ibox-content">
                   <div class="table-responsive">
                       <table class="table table-bordered">
                           <thead>
                             <tr>
-                              <th>Тест</th>
+                              <th><%= Assignment.human_attribute_name("id") %></th>
+                              <th><%= Assignment.human_attribute_name("user_id") %></th>
+                              <th>Тип задания</th>
+                              <th><%= Assignment.human_attribute_name("description") %></th>        
+                              <th><%= Assignment.human_attribute_name("closed") %></th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr><td>Тест данные</td></tr>
+                            <% @assignments.each do |ass| %>
+                              <tr>
+                                <td><%= link_to ass.id, ass.assignable %></td>
+                                <td><%= ass.user.name %></td>
+                                <td><%= ass.assignable_type %></td>
+                                <td><%= ass.description %></td>
+                                <td>
+                                  <% if ass.closed == true %>
+                                    <a href="#"><i class="fa fa-check text-navy"></i></a>
+                                  <% end %>
+                                </td>
+                              </tr>
+                            <% end %>
                           </tbody>
                       </table>
                   </div>

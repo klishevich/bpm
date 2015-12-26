@@ -4,5 +4,7 @@ class ReportsController < ApplicationController
   end
 
   def sla
+  	@assignments = Assignment.all
   end
+
 end

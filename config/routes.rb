@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'reports' => 'reports#index'
   get 'reports/sla' => 'reports#sla'
+  post 'reports/sla' => 'reports#sla'
 
   devise_for :users
   resources :users
