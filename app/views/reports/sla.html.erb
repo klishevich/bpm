@@ -35,25 +35,26 @@
                   <%= simple_form_for :report_sla, { url: '/reports/sla' } do |f| %>
                   <div class="row">
                     <div class="col-lg-4">
-                      <%= f.input :state_id, label: 'Статус', required: false, collection: [['Все', 'all'],['Закрытые','closed'],['Открытые', 'opened']], label_method: :first, value_method: :last %>
+                      <%= f.input :state, label: 'Статус', required: false, collection: @states, label_method: :first, value_method: :last, selected: @state, include_blank: true %>
                     </div>
                     <div class="col-lg-4">
-                      <%= f.input :user_id, label: 'Пользователь', required: false, collection: User.order(:name).all, label_method: :name, value_method: :id %>
+                      <%= f.input :user_id, label: 'Исполнитель', required: false, collection: User.order(:name).all, label_method: :name, value_method: :id, selected: @user_id, include_blank: true  %>
                     </div>
                     <div class="col-lg-4">
-                      <%= f.input :req_type, label: 'Тип заявки', required: false %>
+                      <%= f.input :req_type, label: 'Тип заявки', required: false, collection: @req_types, selected: @req_type, include_blank: true  %>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-4">
-                      <%= f.input :date_begin, label: 'Дата начала', required: false %>
+                      <%= f.input :date_begin, label: 'Дата создания с', required: false, input_html: { value: @date_begin } %>
                     </div>
                     <div class="col-lg-4">
-                      <%= f.input :date_end, label: 'Дата окончания', required: false %>
+                      <%= f.input :date_end, label: 'по', required: false, input_html: { value: @date_end } %>
                     </div>
                   </div>
                   <div class="form-group">
                     <%= f.submit "Сформировать", class: "btn btn-primary"%>
+                    <%= link_to "Очистить", '/reports/sla', class: "btn btn-white"%>
                   </div>
                   <% end %>            
                 </div>
@@ -66,6 +67,9 @@
                           <thead>
                             <tr>
                               <th><%= Assignment.human_attribute_name("id") %></th>
+                              <th><%= Assignment.human_attribute_name("created_at") %></th>
+                              <th><%= Assignment.human_attribute_name("close_date") %></th>
+                              <th><%= Assignment.human_attribute_name("deadline_date") %></th>
                               <th><%= Assignment.human_attribute_name("user_id") %></th>
                               <th>Тип задания</th>
                               <th><%= Assignment.human_attribute_name("description") %></th>        
@@ -76,6 +80,9 @@
                             <% @assignments.each do |ass| %>
                               <tr>
                                 <td><%= link_to ass.id, ass.assignable %></td>
+                                <td><%= ass.created_at.strftime('%d.%m.%Y %T') %></td>
+                                <td><%= ass.close_date.strftime('%d.%m.%Y %T') if !ass.close_date.blank? %></td>
+                                <td><%= ass.deadline_date.strftime('%d.%m.%Y %T') if !ass.deadline_date.blank? %></td>
                                 <td><%= ass.user.name %></td>
                                 <td><%= ass.assignable_type %></td>
                                 <td><%= ass.description %></td>
@@ -96,3 +103,7 @@
 
   </div>
 </div>
+<script type="text/javascript">
+  $('#report_sla_date_begin').datepicker()
+  $('#report_sla_date_end').datepicker()
+</script>

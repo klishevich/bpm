@@ -270,6 +270,14 @@ ru:
           unit_code: "Код подразделения"
           deleted: "Удален"
           admin: "Администратор"
+        assignment:
+          id: "Номер задания"
+          user_id: "Исполнитель"
+          description: "Описание задания"
+          closed: "Закрыто"
+          created_at: "Дата создания"
+          close_date: "Дата закрытия"
+          deadline_date: "Deadline"
         req_reassign:
           id: "Номер"
           name: "Описание"         
@@ -308,11 +316,6 @@ ru:
           main: "Руководитель"
           comment: "Комментарий"
           updated_at: "Дата последнего изменения" 
-        assignment:
-          id: "Номер задания"
-          user_id: "Исполнитель"
-          description: "Описание задания"
-          closed: "Закрыто"
         history:
           created_at: "Дата изменений"
           user_id: "Пользователь"
