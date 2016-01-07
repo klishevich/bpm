@@ -4,6 +4,8 @@
 
 BPM on Rails is Framework for business process automatisation. Built on top of Ruby on Rails it leverages all power of Ruby on Rails and make it super easy to set up business processes with necessary states, actors and data.
 
+It is good alternative for such BPM systems as Pega BPM or IBM.
+
 Example of business process for automatisation described here - [ReqReassign_state.png](https://raw.githubusercontent.com/klishevich/bpm/master/ReqReassign_state.png)
 
 ## Functionality realized
