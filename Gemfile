@@ -28,6 +28,7 @@ gem "cocoon"
 # gem "paperclip", "~> 4.3"
 gem 'carrierwave'
 gem 'pundit'
+gem 'telegram-bot-ruby'
 
 group :development, :test do
 end
